@@ -1,0 +1,18 @@
+<header>
+  <div class="header">
+    <div class="switches">
+      <div (click)="changeTheme()" id="toggle-theme" class="toggle-theme">
+        <img id="toggle-icon" src="{{icon}}" alt="icon theme" class="toggle-theme__icon">
+        <p id="toggle-text" class="toggle-theme__text">{{iconText}}</p>
+      </div>
+    </div>
+    <div id="flags" class="flags">
+      <div (click)="changeLenguage(language.language)" *ngFor="let language of languages" class="flags__item">
+        <img src="{{language.flag}}" alt="" class="">
+      </div>
+    </div>
+    <div id="toggle-colors" class="colors">
+      <div (click)="changeColor(item.color)" *ngFor="let item of colors" class="{{item.class}}"></div>
+    </div>
+  </div>
+</header>

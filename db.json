@@ -1,0 +1,24 @@
+{
+  "es":{
+      "profile": {
+        "rol": "Desarrollador FullStak",
+        "description": "Soy Tecnico en Computacion. Cuento con experiencia como desarrollador usando tecnologias como Java y .Net. Actualmente estoy estudiando la carrera de Ingenieria en Sistemas de Informacion en la UTN. Considero que soy una persona amigable y responsable a la que le gusta trabajar en equipo. Sigo en constante aprendizaje dentro de este mundo tan amplio del desarrollo."
+      },
+      "experience": {
+          "first-job-title": "Desarrollador Back-End PHP",
+          "first-job-dates":"Enero 2022 - Junio 2022",
+          "first-job-description": "Desarrollo de funciones para la pagina web y mantenimiento del sistemas de ventas. Modelado y manjeo de base de datos. Relevamientos y analisis de requerimientos. Tecnologias: HTML, CSS, JavaScript, PHP, MySQL, postreSQL."
+      }
+  },
+  "en":{
+      "profile": {
+          "rol": "FullStack Developer",
+          "description": "I am a Computer Technician. I have experience as a developer using technologies such as Java and .Net. I am currently studying Information Systems Engineering at UTN.I consider myself a friendly and responsible person who likes to work in a team. I am constantly learning within this broad world of development."
+      },
+      "experience": {
+          "first-job-title": "PHP Back-End Developer",
+          "first-job-dates":"January 2022 - June 2022",
+          "first-job-description": "Development of functions for the website and maintenance of sales systems. Database modeling and management. Survey and analysis of requirements. Technologies: HTML, CSS, JavaScript, PHP, MySQL, postreSQL."
+      }
+  }
+}
