@@ -8,6 +8,7 @@ import { CardExperienceComponent } from './components/card-experience/card-exper
 import { CardProjectComponent } from './components/card-project/card-project.component';
 import { ButtonComponent } from './components/button/button.component';
 import { ProjectTagComponent } from './components/card-project/project-tag/project-tag.component';
+import { BodyComponent } from './components/body/body.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ProjectTagComponent } from './components/card-project/project-tag/proje
     CardExperienceComponent,
     CardProjectComponent,
     ButtonComponent,
-    ProjectTagComponent
+    ProjectTagComponent,
+    BodyComponent
   ],
   imports: [
     BrowserModule
