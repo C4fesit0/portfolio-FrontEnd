@@ -9,6 +9,8 @@ import { CardProjectComponent } from './components/card-project/card-project.com
 import { ButtonComponent } from './components/button/button.component';
 import { ProjectTagComponent } from './components/card-project/project-tag/project-tag.component';
 import { BodyComponent } from './components/body/body.component';
+import { CardSkillsComponent } from './components/card-skills/card-skills.component';
+import { CardEducationComponent } from './components/card-education/card-education.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { BodyComponent } from './components/body/body.component';
     CardProjectComponent,
     ButtonComponent,
     ProjectTagComponent,
-    BodyComponent
+    BodyComponent,
+    CardSkillsComponent,
+    CardEducationComponent
   ],
   imports: [
     BrowserModule

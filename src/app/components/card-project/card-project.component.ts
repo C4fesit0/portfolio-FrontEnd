@@ -3,7 +3,10 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-card-project',
   templateUrl: './card-project.component.html',
-  styleUrls: ['./card-project.component.css']
+  styleUrls: ['./card-project.component.css'],
+  host:{
+    "class":"card card--project"
+  }
 })
 export class CardProjectComponent implements OnInit {
 

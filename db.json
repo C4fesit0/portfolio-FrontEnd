@@ -1,5 +1,4 @@
 {
-  "es":{
       "profile": {
         "rol": "Desarrollador FullStak",
         "description": "Soy Tecnico en Computacion. Cuento con experiencia como desarrollador usando tecnologias como Java y .Net. Actualmente estoy estudiando la carrera de Ingenieria en Sistemas de Informacion en la UTN. Considero que soy una persona amigable y responsable a la que le gusta trabajar en equipo. Sigo en constante aprendizaje dentro de este mundo tan amplio del desarrollo."
@@ -8,17 +7,54 @@
           "first-job-title": "Desarrollador Back-End PHP",
           "first-job-dates":"Enero 2022 - Junio 2022",
           "first-job-description": "Desarrollo de funciones para la pagina web y mantenimiento del sistemas de ventas. Modelado y manjeo de base de datos. Relevamientos y analisis de requerimientos. Tecnologias: HTML, CSS, JavaScript, PHP, MySQL, postreSQL."
-      }
-  },
-  "en":{
-      "profile": {
-          "rol": "FullStack Developer",
-          "description": "I am a Computer Technician. I have experience as a developer using technologies such as Java and .Net. I am currently studying Information Systems Engineering at UTN.I consider myself a friendly and responsible person who likes to work in a team. I am constantly learning within this broad world of development."
       },
-      "experience": {
-          "first-job-title": "PHP Back-End Developer",
-          "first-job-dates":"January 2022 - June 2022",
-          "first-job-description": "Development of functions for the website and maintenance of sales systems. Database modeling and management. Survey and analysis of requirements. Technologies: HTML, CSS, JavaScript, PHP, MySQL, postreSQL."
-      }
-  }
+      "skills":{
+        "fronend":[
+          {
+            "name": "HTML",
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/HTML5_Badge.svg/768px-HTML5_Badge.svg.png"
+          },
+          {
+            "name": "CSS",
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/CSS3_logo.svg/800px-CSS3_logo.svg.png"
+          },
+          {
+            "name": "JavaScript",
+            "src": "https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png"
+          },
+          {
+            "name": "Angular",
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/2048px-Angular_full_color_logo.svg.png"
+          }
+        ],
+        "backend": [
+          {
+            "name":"Java",
+            "src": "https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Java_programming_language_logo.svg/1200px-Java_programming_language_logo.svg.png"
+          },
+          {
+            "name":"Spring",
+            "src":"https://destatic.blob.core.windows.net/images/spring-boot-logo.png"
+          }
+        ]
+      },
+      "education": [
+        {
+          "education-title": "Escuela Tecnica N 35 Ing.Eduardo Latzina",
+          "education-dates":"Marzo 2015 - Diciembre 2020",
+          "education-loco": "https://e7.pngegg.com/pngimages/119/387/png-clipart-middle-school-national-secondary-school-secondary-education-high-school-school-logo-high-school.png"
+        },
+        {
+          "education-title": "UTN FRBA",
+          "education-dates":"Marzo 2021 - Actualidad",
+          "education-loco": "https://materialeducativo.frc.utn.edu.ar/Logos/utnTextoDebajo.png"
+        }
+      ],
+      "projects": [
+        {
+          "project-title":"portfolio-maquetado",
+          "project-github":"https://github.com/C4fesit0/portfolio-maquetado",
+          "project-deploy":"https://c4fesit0.github.io/portfolio-maquetado/"
+        }
+      ]
 }
