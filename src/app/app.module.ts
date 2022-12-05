@@ -11,6 +11,7 @@ import { ProjectTagComponent } from './components/card-project/project-tag/proje
 import { BodyComponent } from './components/body/body.component';
 import { CardSkillsComponent } from './components/card-skills/card-skills.component';
 import { CardEducationComponent } from './components/card-education/card-education.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CardEducationComponent } from './components/card-education/card-educati
     CardEducationComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
