@@ -12,6 +12,7 @@ import { BodyComponent } from './components/body/body.component';
 import { CardSkillsComponent } from './components/card-skills/card-skills.component';
 import { CardEducationComponent } from './components/card-education/card-education.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   ],
   imports: [
     BrowserModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

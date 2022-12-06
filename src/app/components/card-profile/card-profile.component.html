@@ -1,28 +1,25 @@
 <article class="card card--profile">
 
   <div class="card__image-container">
-    <img src="./assets/images/ichigo-perfil.jpg" alt="profile image"/>
+    <img src="{{profile.image}}" alt="profile image"/>
   </div>
   <div class="card__header">
     <h2 class="card__title no-margin">
-      Alan Lazo
+      {{profile.name}}
     </h2>
-    <p data-section="profile" data-value="rol" class="card__subtitle no-margin">FullStack Developer</p>
+    <p data-section="profile" data-value="rol" class="card__subtitle no-margin">{{profile.rol}}</p>
   </div>
   <div class="card__body">
     <div class="card__link">
       <i class="fas fa-envelope icon"></i>
-      <a href="mailto:alanlazo35@gmail.com">alanlazo35@gmail.com</a>
+      <a href="mailto:alanlazo35@gmail.com">{{profile.mail}}</a>
     </div>
     <div class="card__link">
       <i class="fas fa-phone-alt icon"></i>
-      <a href="tel:1123951092">+054 11-2395-1092</a>
+      <a href="tel:1123951092">{{profile.phone}}</a>
     </div>
     <p data-section="profile" data-value="description" class="card__text">
-      Soy Tecnico en Computacion. Cuento con experiencia como desarrollador usando tecnologias como Java y .Net.
-      Actualmente estoy estudiando la carrera de Ingenieria en Sistemas de Informacion en la UTN.
-      Considero que soy una persona amigable y responsable a la que le gusta trabajar en equipo.
-      Sigo en constante aprendizaje dentro de este mundo tan amplio del desarrollo.
+      {{profile.description}}
     </p>
   </div>
 </article>

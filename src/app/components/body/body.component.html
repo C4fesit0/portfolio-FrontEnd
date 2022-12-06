@@ -4,9 +4,7 @@
     <app-card-experience></app-card-experience>
   </section>
   <section class="column column--right">
-    <app-card-skills></app-card-skills>
-    <app-card-skills></app-card-skills>
-      <app-card-project></app-card-project>
-      <app-card-project></app-card-project>
+    <app-card-skills [skill]="skill"  *ngFor="let skill of skills"></app-card-skills>
+    <app-card-project [project]="project" *ngFor="let project of projects"></app-card-project>
   </section>
 </main>

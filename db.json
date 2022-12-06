@@ -1,6 +1,10 @@
 {
       "profile": {
+        "image": "./assets/images/roronoa.jpg",
+        "name": "Alan Lazo",
         "rol": "Desarrollador FullStak",
+        "phone": "+054 11-2395-1092",
+        "mail": "alanlazo35@gmail.com",
         "description": "Soy Tecnico en Computacion. Cuento con experiencia como desarrollador usando tecnologias como Java y .Net. Actualmente estoy estudiando la carrera de Ingenieria en Sistemas de Informacion en la UTN. Considero que soy una persona amigable y responsable a la que le gusta trabajar en equipo. Sigo en constante aprendizaje dentro de este mundo tan amplio del desarrollo."
       },
       "experience": {
@@ -10,7 +14,7 @@
       },
       "skills":[
         {
-          "rol":"frontend",
+          "rol":"Front End",
           "technologies":[
             {
               "name": "HTML",
@@ -35,7 +39,7 @@
           ]
         },
         {
-          "rol": "backend",
+          "rol": "Back End",
           "technologies": [
             {
               "name":"Java",
@@ -44,6 +48,18 @@
             {
               "name":"Spring",
               "src":"https://destatic.blob.core.windows.net/images/spring-boot-logo.png"
+            },
+            {
+              "name":"MySQL",
+              "src":"https://1000logos.net/wp-content/uploads/2020/08/MySQL-Logo.png"
+            },
+            {
+              "name":"PostgreSQL",
+              "src":"https://cdn.iconscout.com/icon/free/png-256/postgresql-11-1175122.png"
+            },
+            {
+              "name":"PHP",
+              "src":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/PHP-logo.svg/2560px-PHP-logo.svg.png"
             }
           ]
         }
@@ -62,9 +78,17 @@
       ],
       "projects": [
         {
-          "title":"portfolio-maquetado",
+          "image": "./assets/images/maquetado-portfolio-project.png",
+          "title":"Portfolio",
           "github":"https://github.com/C4fesit0/portfolio-maquetado",
-          "deploy":"https://c4fesit0.github.io/portfolio-maquetado/"
+          "deploy":"https://c4fesit0.github.io/portfolio-maquetado/",
+          "description":"Maquetado en HTML, CSS y JavaScript de este portfolio. Este trabajo es una de las entregas para el curso de Argentina Programa. Para realizarlo segui el tutorial de Dorian Designs en Youtube. Me gusto mucho el diseño y al no contar con experiencia me parecio la mejor opcion. Link del video: https://www.youtube.com/watch?v=7Rd84ExmHyg&ab_channel=DorianDesings",
+          "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Responsive"
+          ]
         }
       ]
 }

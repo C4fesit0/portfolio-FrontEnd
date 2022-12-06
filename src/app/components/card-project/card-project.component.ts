@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IProject } from '../../interfaces/IProject.interface';
 
 @Component({
   selector: 'app-card-project',
@@ -10,6 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardProjectComponent implements OnInit {
 
+  @Input() project !:IProject;
   constructor() { }
 
   ngOnInit(): void {
