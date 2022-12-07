@@ -1,6 +1,9 @@
+//Modulos
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {HttpClientModule} from '@angular/common/http';
+//Componentes
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CardProfileComponent } from './components/card-profile/card-profile.component';
@@ -11,8 +14,8 @@ import { ProjectTagComponent } from './components/card-project/project-tag/proje
 import { BodyComponent } from './components/body/body.component';
 import { CardSkillsComponent } from './components/card-skills/card-skills.component';
 import { CardEducationComponent } from './components/card-education/card-education.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {HttpClientModule} from '@angular/common/http';
+import { ExperienceComponent } from './components/card-experience/experience/experience.component';
+import { EducationComponent } from './components/card-education/education/education.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,9 @@ import {HttpClientModule} from '@angular/common/http';
     ProjectTagComponent,
     BodyComponent,
     CardSkillsComponent,
-    CardEducationComponent
+    CardEducationComponent,
+    ExperienceComponent,
+    EducationComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
-export interface Education {
+export interface IEducation {
   title: string;
+  subtitle:string;
   dates: string;
-  logo:  string;
+  image: string;
 }
