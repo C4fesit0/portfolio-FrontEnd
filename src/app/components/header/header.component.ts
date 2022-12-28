@@ -9,7 +9,7 @@ export class HeaderComponent implements OnInit {
 
   icon:string = '../assets/icons/sun.svg';
   iconText:string='Light Mode';
-  languages=[
+  /* languages=[
     {
       flag:'assets/icons/ar.svg',
       language:'es',
@@ -17,7 +17,8 @@ export class HeaderComponent implements OnInit {
       flag:'assets/icons/gb.svg',
       language:'en',
     }
-  ]
+  ] */
+  logo:string='../assets/images/terminal.png'
   colors = [
     {
       color: 'hsl(214,84%,56%)',

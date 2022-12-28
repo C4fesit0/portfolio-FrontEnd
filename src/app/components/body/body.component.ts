@@ -20,14 +20,14 @@ export class BodyComponent implements OnInit {
   ngOnInit(): void {
 
     //Skills
-    this.skillService.getSkills().subscribe( (skills)=>{
+   /*  this.skillService.getSkills().subscribe( (skills)=>{
       this.skills= skills;
     });
 
     //Projects
     this.projectService.getProjects().subscribe((projects)=>{
       this.projects = projects;
-    })
+    }) */
   }
 
 
