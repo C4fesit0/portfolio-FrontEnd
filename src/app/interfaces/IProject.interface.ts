@@ -1,8 +1,10 @@
+import { ISkill } from './ISkill.interface';
 export interface IProject {
+  id: number;
+  nombre: string;
+  descripcion: string;
+  repositorio: string;
+  demo: string;
   image: string;
-  title: string;
-  github: string;
-  deploy: string;
-  description: string;
-  tags: string[];
+  tecnologias: ISkill[];
 }

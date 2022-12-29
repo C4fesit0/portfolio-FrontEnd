@@ -31,15 +31,16 @@ export class BodyComponent implements OnInit {
             break;
         }
        })
-       console.log(this.skillsFront);
-       console.log(this.skillsBack);
+       //console.log(this.skillsFront);
+       //console.log(this.skillsBack);
 
     });
-/*
+
     //Projects
     this.projectService.getProjects().subscribe((projects)=>{
+      console.log(projects);
       this.projects = projects;
-    }) */
+    })
   }
 
 

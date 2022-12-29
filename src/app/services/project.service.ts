@@ -8,8 +8,8 @@ import { IProject } from '../interfaces/IProject.interface';
 })
 export class ProjectService {
 
-  apiURL = 'http://localhost:3000/projects';
-
+  //apiURL = 'http://localhost:3000/projects';
+  apiURL='http://localhost:8080/proyecto/listar';
   constructor(private http:HttpClient) { }
 
   getProjects():Observable<IProject[]>{
