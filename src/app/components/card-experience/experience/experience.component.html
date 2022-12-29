@@ -1,8 +1,8 @@
 <div class="experience">
-  <img src="{{experience.image}}" alt="" class="experience__image">
+  <img src="{{experience.imagen}}" alt="" class="experience__image">
   <div class="experience__info">
-    <p data-section="experience" data-value="first-job-dates" class="experience__time">{{experience.dates}}</p>
-    <h3 data-section="experience" data-value="first-job-title" class="experience__job">{{experience.title}}</h3>
-    <p data-section="experience" data-value="first-job-description" class="experience__description">{{experience.description}}</p>
+    <p data-section="experience" data-value="first-job-dates" class="experience__time">{{experience.fecha_inicio | date:'MMMM y' | titlecase}} - {{experience.fecha_final | date:'MMMM y' | titlecase}}</p>
+    <h5 data-section="experience" data-value="first-job-title" class="experience__job">{{experience.puesto}}</h5>
+    <p data-section="experience" data-value="first-job-description" class="experience__description">{{experience.descripcion}}</p>
   </div>
 </div>

@@ -8,8 +8,8 @@ import { IExperience } from '../interfaces/IExperience.interface';
 })
 export class ExperienceService {
 
-  apiURL = 'http://localhost:3000/experience';
-
+  //apiURL = 'http://localhost:3000/experience';
+  apiURL = 'http://localhost:8080/experiencia/';
   constructor(private http:HttpClient) { }
 
   getExperienceData():Observable<IExperience[]>{

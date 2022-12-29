@@ -8,8 +8,8 @@ import { ISkill } from '../interfaces/ISkill.interface';
 })
 export class SkillService {
 
-  apiURL = 'http://localhost:3000/skills';
-
+  //apiURL = 'http://localhost:3000/skills';
+  apiURL='http://localhost:8080/tecnologia/listar';
   constructor(private http:HttpClient) { }
 
   getSkills() : Observable<ISkill[]>{

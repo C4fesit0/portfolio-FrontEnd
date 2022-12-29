@@ -11,19 +11,31 @@ import { ProjectService } from '../../services/project.service';
 })
 export class BodyComponent implements OnInit {
 
-  skills:ISkill[] = [];
   projects:IProject[] = [];
-
+  skillsFront:ISkill[] = [];
+  skillsBack:ISkill[]=[];
   constructor(private skillService:SkillService,
                 private projectService:ProjectService) { }
 
   ngOnInit(): void {
 
     //Skills
-   /*  this.skillService.getSkills().subscribe( (skills)=>{
-      this.skills= skills;
-    });
+     this.skillService.getSkills().subscribe( (skills)=>{
+       skills.forEach((skill) =>{
+        switch(skill.rol.id){
+          case 2:
+            this.skillsBack.push(skill);
+            break;
+          case 1:
+            this.skillsFront.push(skill);
+            break;
+        }
+       })
+       console.log(this.skillsFront);
+       console.log(this.skillsBack);
 
+    });
+/*
     //Projects
     this.projectService.getProjects().subscribe((projects)=>{
       this.projects = projects;

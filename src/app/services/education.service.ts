@@ -10,7 +10,9 @@ export class EducationService {
 
   constructor(private http:HttpClient) { }
 
-  apiURL='http://localhost:3000/education';
+  //apiURL='http://localhost:3000/education';
+  apiURL='http://localhost:8080/educacion/';
+
 
   getEducationData():Observable<IEducation[]>{
     return this.http.get<IEducation[]>(this.apiURL);

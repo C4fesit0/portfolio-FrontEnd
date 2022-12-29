@@ -1,9 +1,9 @@
 <div class="experience">
-  <img src="{{education.image}}" alt="education image" class="experience__image">
+  <img src="{{education.imagen}}" alt="education image" class="experience__image">
   <div class="experience__info">
-    <h3 class="experience__job">{{education.title}}</h3>
-    <p class="experience__time">{{education.dates}}</p>
-    <h4 class="experience__job" >{{education.subtitle}}</h4>
+    <h5 class="experience__job">{{education.titulo}}</h5>
+    <p class="experience__time">{{education.fecha_inicio | date:'MMMM y' | titlecase}} - {{education.fecha_final | date:'MMMM y' | titlecase}}</p>
+    <h6 class="experience__job" >{{education.institucion}}</h6>
   </div>
 </div>
 

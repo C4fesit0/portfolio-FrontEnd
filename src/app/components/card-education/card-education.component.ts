@@ -18,6 +18,7 @@ export class CardEducationComponent implements OnInit {
 
   ngOnInit(): void {
     this.educationService.getEducationData().subscribe((data)=>{
+      //console.log(data);
       this.educationData= data;
     })
   }

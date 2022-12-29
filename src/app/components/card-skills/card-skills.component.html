@@ -1,9 +1,9 @@
 <article class="card">
-  <h2 class="card__title">{{skill.rol}}</h2>
+  <h2 class="card__title">{{skills[0].rol.nombre}}</h2>
   <div class="skills">
-    <div *ngFor="let technologie of skill.technologies" class="skills__item">
-      <img class="skills__icon" src="{{technologie.src}}"/>
-      <p class="skills__tech">{{technologie.name}}</p>
+    <div *ngFor="let technologie of skills" class="skills__item">
+      <img class="skills__icon" src="{{technologie.logo}}"/>
+      <p class="skills__tech">{{technologie.nombre}}</p>
     </div>
   </div>
 </article>

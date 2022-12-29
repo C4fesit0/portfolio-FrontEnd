@@ -1,8 +1,9 @@
 //Modulos
-import { NgModule } from '@angular/core';
+import { LOCALE_ID ,NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {HttpClientModule} from '@angular/common/http';
+
 //Componentes
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -16,6 +17,10 @@ import { CardSkillsComponent } from './components/card-skills/card-skills.compon
 import { CardEducationComponent } from './components/card-education/card-education.component';
 import { ExperienceComponent } from './components/card-experience/experience/experience.component';
 import { EducationComponent } from './components/card-education/education/education.component';
+
+import localeEs from "@angular/common/locales/es";
+import { registerLocaleData } from "@angular/common";
+registerLocaleData(localeEs, "es");
 
 @NgModule({
   declarations: [
@@ -37,7 +42,7 @@ import { EducationComponent } from './components/card-education/education/educat
     FontAwesomeModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: "es" } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

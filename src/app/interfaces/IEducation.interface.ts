@@ -1,6 +1,9 @@
 export interface IEducation {
-  title: string;
-  subtitle:string;
-  dates: string;
-  image: string;
+  id: number;
+  titulo: string;
+  fecha_inicio: string;
+  fecha_final: string;
+  actualidad: boolean;
+  institucion: string;
+  imagen: string;
 }

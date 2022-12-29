@@ -1,9 +1,11 @@
-export interface ISkill {
-  rol:string;
-  technologies: ITechnology[];
+export interface Rol {
+  id: number;
+  nombre: string;
 }
 
-export interface ITechnology {
-  name: string;
-  src:  string;
+export interface ISkill {
+  id: number;
+  nombre: string;
+  logo: string;
+  rol: Rol;
 }
