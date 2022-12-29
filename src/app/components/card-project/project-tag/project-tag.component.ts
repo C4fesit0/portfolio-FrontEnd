@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IProject } from '../../../interfaces/IProject.interface';
+import { ISkill } from '../../../interfaces/ISkill.interface';
 
 @Component({
   selector: 'app-project-tag',
@@ -11,7 +12,7 @@ import { IProject } from '../../../interfaces/IProject.interface';
 })
 export class ProjectTagComponent implements OnInit {
 
-  @Input() tags:string[] =[];
+  @Input() tecnologias:ISkill[] =[];
 
   constructor() { }
 
