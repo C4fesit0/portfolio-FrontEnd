@@ -14,7 +14,11 @@
     <!-- <div id="toggle-colors" class="colors">
       <div (click)="changeColor(item.color)" *ngFor="let item of colors" class="{{item.class}}"></div>
     </div> -->
-    <button class="btn btn-primary">Login</button>
-
+    <ng-container *ngIf="url!='/login' ;else LoginTemplate">
+      <button class="btn btn-primary" routerLink="/login">Login</button>
+    </ng-container>
+    <ng-template #LoginTemplate>
+      <button class="btn btn-danger" routerLink="/">Volver</button>
+    </ng-template>
   </div>
 </header>

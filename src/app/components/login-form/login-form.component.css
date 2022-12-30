@@ -1,0 +1,10 @@
+.login{
+  margin: 3rem auto;
+  width: 75%;
+}
+
+@media (min-width: 768px){
+    .login{
+      width: 40%;
+    }
+}

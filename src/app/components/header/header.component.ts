@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router, RouterEvent } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -38,11 +40,19 @@ export class HeaderComponent implements OnInit {
     },
   ];
 
+  url!:string;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.router.events.subscribe((val) => {
+      if(val instanceof NavigationEnd){
+        console.log(val.url)
+        this.url = val.url;
+      }
+  });
   }
+
 
   changeTheme():void{
     document.body.classList.toggle("dark");
