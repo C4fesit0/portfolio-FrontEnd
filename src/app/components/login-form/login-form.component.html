@@ -1,11 +1,11 @@
 <pre>{{loginForm.value | json}}</pre>
 
 <div class="login">
-  <form (ngSubmit)="login(loginForm.value)" class="form-control" #loginForm="ngForm">
+  <form (ngSubmit)="login(loginForm)" class="form-control" #loginForm="ngForm">
     <!-- Email input -->
     <div class="form-outline mb-4">
       <label class="form-label" for="mailLabel">Email address</label>
-      <input type="email" name="mail" ngModel id="mail" class="form-control">
+      <input type="email" name="email" ngModel id="mail" class="form-control">
     </div>
 
     <!-- Password input -->

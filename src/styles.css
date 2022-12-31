@@ -34,6 +34,14 @@ body.dark{
   --bg-card-color:hsl(0,0%,20%);
 }
 
+.form-control{
+  background-color: var(--bg-card-color);
+  color: var(--text-color);
+}
+input{
+  background-color: var(--bg-color);
+}
+
 .header{
   display: flex;
   align-items: center;
