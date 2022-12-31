@@ -10,16 +10,15 @@ export interface IProfile {
   tecnologias: Tecnologia[];
 }
 
-interface Rol {
-  id: number;
-  nombre: string;
-}
-
 interface Tecnologia {
   id: number;
   nombre: string;
   logo: string;
   rol: Rol;
+}
+interface Rol {
+  id: number;
+  nombre: string;
 }
 
 

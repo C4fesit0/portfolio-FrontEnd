@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router, RouterEvent } from '@angular/router';
-import { filter } from 'rxjs';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { NavigationEnd, NavigationError, NavigationStart, Router, RouterEvent } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -40,18 +39,22 @@ export class HeaderComponent implements OnInit {
     },
   ];
 
-  url!:string;
+  url!:String;
 
-  constructor(private router: Router) { }
+  @ViewChild('loginButton') loginButton!:ElementRef;
+
+  constructor(private router: Router, private renderer2:Renderer2) { }
 
   ngOnInit(): void {
-    this.router.events.subscribe((val) => {
-      if(val instanceof NavigationEnd){
-        console.log(val.url)
-        this.url = val.url;
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+
+          this.url = event.url;
+          console.log(event);
       }
   });
   }
+
 
 
   changeTheme():void{
