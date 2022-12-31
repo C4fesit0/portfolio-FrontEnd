@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
 
 //Componentes
 import { AppComponent } from './app.component';
@@ -45,6 +46,7 @@ registerLocaleData(localeEs, "es");
     FontAwesomeModule,
     HttpClientModule,
     AppRoutingModule,
+    FormsModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: "es" } ],
   bootstrap: [AppComponent]

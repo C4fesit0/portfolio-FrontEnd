@@ -1,19 +1,23 @@
+<pre>{{loginForm.value | json}}</pre>
+
 <div class="login">
-  <form class="form-control">
+  <form (ngSubmit)="login(loginForm.value)" class="form-control" #loginForm="ngForm">
     <!-- Email input -->
     <div class="form-outline mb-4">
-      <label class="form-label" for="form2Example1">Email address</label>
-      <input type="email" id="form2Example1" class="form-control" />
+      <label class="form-label" for="mailLabel">Email address</label>
+      <input type="email" name="mail" ngModel id="mail" class="form-control">
     </div>
 
     <!-- Password input -->
     <div class="form-outline mb-4">
-      <label class="form-label" for="form2Example2">Password</label>
-      <input type="password" id="form2Example2" class="form-control" />
+      <label class="form-label" for="password">Password</label>
+      <input type="password" id="password" class="form-control" name="password" ngModel>
     </div>
 
     <!-- Submit button -->
-    <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
+    <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
 
   </form>
+
+
 </div>
