@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ILoginData } from '../../interfaces/ILoginData.interface';
 import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -14,8 +15,9 @@ export class LoginFormComponent implements OnInit {
     email: "",
     password:""
   }
+  loginResponse!:boolean;
 
-  constructor(private userService:UserService) { }
+  constructor(private userService:UserService, private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -25,6 +27,10 @@ export class LoginFormComponent implements OnInit {
     console.log(this.data);
     this.userService.login(this.data).subscribe(response =>{
       console.log(response);
+      this.userService.usuarioLogeado = response;
+      if(this.userService.usuarioLogeado){
+        this.router.navigateByUrl("/edit");
+      }
     })
   }
 

@@ -8,6 +8,7 @@ import { ILoginData } from '../interfaces/ILoginData.interface';
 })
 export class UserService {
 
+  usuarioLogeado:boolean =false;
   apiURL='http://localhost:8080/usuario/';
 
   constructor(private http:HttpClient) { }

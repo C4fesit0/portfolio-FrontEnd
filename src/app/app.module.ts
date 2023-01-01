@@ -5,6 +5,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 //Componentes
 import { AppComponent } from './app.component';
@@ -23,6 +24,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 
 import localeEs from "@angular/common/locales/es";
 import { registerLocaleData } from "@angular/common";
+import { MainComponent } from './components/main/main.component';
 registerLocaleData(localeEs, "es");
 
 @NgModule({
@@ -39,14 +41,16 @@ registerLocaleData(localeEs, "es");
     CardEducationComponent,
     ExperienceComponent,
     EducationComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
     FontAwesomeModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: "es" } ],
   bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { NavigationEnd, NavigationError, NavigationStart, Router, RouterEvent } from '@angular/router';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -40,10 +41,11 @@ export class HeaderComponent implements OnInit {
   ];
 
   url!:String;
+  login:boolean = false;
 
   @ViewChild('loginButton') loginButton!:ElementRef;
 
-  constructor(private router: Router, private renderer2:Renderer2) { }
+  constructor(private router: Router, public userService:UserService) { }
 
   ngOnInit(): void {
     this.router.events.subscribe((event) => {
@@ -53,6 +55,10 @@ export class HeaderComponent implements OnInit {
           console.log(event);
       }
   });
+  }
+
+  loginUser():void{
+    this.login=true;
   }
 
 

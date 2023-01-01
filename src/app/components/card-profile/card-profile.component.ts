@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IProfile } from '../../interfaces/IProfile.interface';
 import { ProfileService } from '../../services/profile.service';
 
@@ -9,6 +9,7 @@ import { ProfileService } from '../../services/profile.service';
 })
 export class CardProfileComponent implements OnInit {
 
+  @Input() edit:boolean = false;
   profile!:IProfile;
   constructor(private profileService:ProfileService) { }
 
@@ -16,6 +17,7 @@ export class CardProfileComponent implements OnInit {
     this.profileService.getProfileData().subscribe((data)=>{
       this.profile=data;
     })
+    console.log("VALOR DE EDIT PROFILE==> ",this.edit)
   }
 
 }

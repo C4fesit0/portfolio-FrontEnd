@@ -1,0 +1,12 @@
+<main class="main">
+  <section class="column column--left">
+    <app-card-profile [edit]="this.userService.usuarioLogeado"></app-card-profile>
+    <app-card-experience ></app-card-experience>
+    <app-card-education ></app-card-education>
+  </section>
+  <section class="column column--right">
+    <app-card-skills  [skills]="skillsFront"></app-card-skills>
+    <app-card-skills  [skills]="skillsBack"></app-card-skills>
+    <app-card-project  [project]="project" *ngFor="let project of projects"></app-card-project>
+  </section>
+</main>

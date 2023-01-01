@@ -14,8 +14,21 @@
     <!-- <div id="toggle-colors" class="colors">
       <div (click)="changeColor(item.color)" *ngFor="let item of colors" class="{{item.class}}"></div>
     </div> -->
-        <button *ngIf="url=='/'" class="btn btn-primary" routerLink="/login" #loginButton>Login</button>
-        <button *ngIf="url=='/login'" class="btn btn-danger" routerLink="/" #loginButton>Volver</button>
+      <button *ngIf="url!='/login' && !this.userService.usuarioLogeado" class="btn btn-primary" routerLink="/login" #loginButton>Login</button>
+      <button *ngIf="url=='/login' && !this.userService.usuarioLogeado" class="btn btn-danger" routerLink="/" #loginButton>Volver</button>
+
+      <div class="dropdown">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Dropdown link
+        </a>
+
+        <ul class="dropdown-menu" style="">
+          <li><a class="dropdown-item" href="#">Action</a></li>
+          <li><a class="dropdown-item" href="#">Another action</a></li>
+          <li><a class="dropdown-item" href="#">Something else here</a></li>
+        </ul>
+      </div>
+
 
   </div>
 </header>
