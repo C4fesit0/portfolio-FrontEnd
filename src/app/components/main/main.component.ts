@@ -44,7 +44,7 @@ export class MainComponent implements OnInit {
 
    //Projects
    this.projectService.getProjects().subscribe((projects)=>{
-     console.log(projects);
+     //console.log(projects);
      this.projects = projects;
    })
 

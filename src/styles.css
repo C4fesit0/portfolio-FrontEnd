@@ -34,7 +34,7 @@ body.dark{
   --bg-card-color:hsl(0,0%,20%);
 }
 
-.form-control{
+.form-control,.modal-content{
   background-color: var(--bg-card-color);
   color: var(--text-color);
 }

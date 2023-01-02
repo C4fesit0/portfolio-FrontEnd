@@ -1,7 +1,56 @@
 <article class="card card--profile">
 
+    <div class="row mb-3">
+      <div class="col">
+        <button class="btn btn-sm btn-outline-primary" (click)="open(demoModal)">Editar
+          <i class="fa-solid fa-pen-to-square"></i>
+        </button>
+      </div>
+    </div>
+
+  <!-- Modal -->
+  <ng-template #demoModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Actualizar Perfil</h4>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <form (ngSubmit)="actualizarPerfil(updateProfile)" #updateProfile="ngForm" >
+    <div class="modal-body">
+
+        <div class="mb-3">
+          <label for="formFile" class="form-label">Foto de Perfil</label>
+          <input (change)="cargaImagen($event)" name="foto_perfil" ngModel class="form-control" type="file" id="formFile">
+        </div>
+        <div class="form-outline mb-4">
+          <label class="form-label" for="nombre">Nombre</label>
+          <input name="profile.nombre" [(ngModel)]="profile.nombre" type="text" name="nombre" ngModel id="nombre" class="form-control">
+        </div>
+        <div class="form-outline mb-4">
+          <label class="form-label" for="titulo">Titulo</label>
+          <input name="profile.titulo" [(ngModel)]="profile.titulo" type="text" id="titulo" class="form-control" name="titulo" ngModel>
+        </div>
+        <div class="form-outline mb-4">
+          <label class="form-label" for="email">Email</label>
+          <input name="profile.email" [(ngModel)]="profile.email" type="text" id="email" class="form-control" name="email" ngModel>
+        </div>
+        <div class="form-outline mb-4">
+          <label class="form-label" for="telefono">LinkedIn</label>
+          <input name="profile.telefono" [(ngModel)]="profile.telefono" type="text" id="telefono" class="form-control" name="telefono" ngModel>
+        </div>
+        <div class="form-outline mb-4">
+          <label class="form-label" for="descripcion">Descripcion</label>
+          <textarea name="profile.sobre_mi" [(ngModel)]="profile.sobre_mi" id="sobre_mi" class="form-control" name="sobre_mi" ngModel></textarea>
+        </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-outline-success" (click)="modal.close('Save click')">Actualizar</button>
+    </div>
+  </form>
+
+  </ng-template>
+
   <div class="card__image-container">
-    <img src="{{profile.foto_perfil}}" alt="profile image"/>
+    <img src="http://localhost:8080/persona/image/{{profile.id}}"  alt="profile image"/>
   </div>
   <div class="card__header">
     <h2 class="card__title no-margin">
@@ -20,10 +69,11 @@
     </div> -->
     <div class="card__link">
       <i class="fa-brands fa-linkedin icon"></i>
-      <a href="https://www.linkedin.com/in/alan-lazo/">LinkedIn</a>
+      <a target="_blank" href="https://www.linkedin.com/in/alan-lazo/">LinkedIn</a>
     </div>
     <p data-section="profile" data-value="description" class="card__text">
       {{profile.sobre_mi}}
     </p>
   </div>
+
 </article>
