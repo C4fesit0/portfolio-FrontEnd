@@ -161,6 +161,10 @@ input{
   overflow: hidden;
 }
 
+.card--profile .card__image-container img{
+ min-width: 100%;
+}
+
 .card__header{
   padding: 1em 0;
 }

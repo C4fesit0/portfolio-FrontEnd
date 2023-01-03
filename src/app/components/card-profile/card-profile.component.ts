@@ -34,7 +34,7 @@ export class CardProfileComponent implements OnInit {
     foto_perfil: "",
   };
 
-  foto_perfil!:string;
+  foto_perfil!:string | undefined;
 
   archivo!:File;
 
@@ -44,13 +44,6 @@ export class CardProfileComponent implements OnInit {
     this.profileService.getProfileData().subscribe((data)=>{
       this.profile=data;
     })
-    /* this.profileService.getProfileImage(1).subscribe((data)=>{
-      console.log("IMAGEEN");
-      let info:ArrayBuffer = data;
-      console.log(info);
-      this.foto_perfil = Buffer.from(info).toString('base64');
-      console.log(this.foto_perfil);
-    }) */
   }
 
 
@@ -65,23 +58,39 @@ export class CardProfileComponent implements OnInit {
     this.profileDto.email=data.value.email;
     this.profileDto.sobre_mi=data.value.sobre_mi;
     this.profileDto.titulo=data.value.titulo;
-    this.profileDto.foto_perfil=data.value.foto_perfil;
 
-    //console.log(this.profileDto);
-    this.profileService.actualizarPerfil(this.profileDto).subscribe(e =>{
-      console.log(e);
-    });
-    if(this.archivo){
+
+    console.log(this.profileDto);
+     if(this.archivo){
+      this.profileDto.foto_perfil=this.archivo.name;
       this.profileService.subirFoto(this.archivo,this.profile.id).subscribe(e =>{
         console.log(e);
       })
+    }else{
+      this.profileDto.foto_perfil = this.profile.foto_perfil
     }
+
+
+    this.profileService.actualizarPerfil(this.profileDto).subscribe(e =>{
+      console.log(e);
+    });
+
   }
 
   cargaImagen(event:any){
     this.archivo = event.target.files[0];
     //console.log(this.archivo);
+    this.convertirArchivo(this.archivo);
   }
+
+  convertirArchivo(file:File) {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+        console.log(reader.result);
+        this.foto_perfil =reader.result?.toString();
+    };
+}
 
 
 }

@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { NavigationEnd, NavigationError, NavigationStart, Router, RouterEvent } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, NavigationError, NavigationStart, Router, RouterEvent } from '@angular/router';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -40,27 +40,25 @@ export class HeaderComponent implements OnInit {
     },
   ];
 
-  url!:String;
+  boton= {
+    url:'',
+    texto: '',
+    class:''
+  }
   login:boolean = false;
 
   @ViewChild('loginButton') loginButton!:ElementRef;
 
-  constructor(private router: Router, public userService:UserService) { }
+  constructor(private route: ActivatedRoute, public userService:UserService) {
 
+   }
   ngOnInit(): void {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-
-          this.url = event.url;
-          console.log(event);
-      }
-  });
+    this.boton= this.route.snapshot.data['boton'];
   }
 
   loginUser():void{
     this.login=true;
   }
-
 
 
   changeTheme():void{

@@ -1,6 +1,6 @@
 <article class="card card--profile">
 
-    <div class="row mb-3">
+    <div *ngIf="edit" class="row mb-3">
       <div class="col">
         <button class="btn btn-sm btn-outline-primary" (click)="open(demoModal)">Editar
           <i class="fa-solid fa-pen-to-square"></i>
@@ -19,7 +19,7 @@
 
         <div class="mb-3">
           <label for="formFile" class="form-label">Foto de Perfil</label>
-          <input (change)="cargaImagen($event)" name="foto_perfil" ngModel class="form-control" type="file" id="formFile">
+          <input (change)="cargaImagen($event)" name="foto_perfil" ngModel class="form-control" type="file" id="foto_perfil">
         </div>
         <div class="form-outline mb-4">
           <label class="form-label" for="nombre">Nombre</label>
@@ -50,7 +50,8 @@
   </ng-template>
 
   <div class="card__image-container">
-    <img src="http://localhost:8080/persona/image/{{profile.id}}"  alt="profile image"/>
+    <img *ngIf="foto_perfil" [src]="foto_perfil" alt="profile image"/>
+    <img *ngIf="!foto_perfil" src="http://localhost:8080/persona/image/{{profile.id}}" alt="profile image" />
   </div>
   <div class="card__header">
     <h2 class="card__title no-margin">

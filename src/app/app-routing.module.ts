@@ -7,6 +7,8 @@ import {Routes, RouterModule} from '@angular/router';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { BodyComponent } from './components/body/body.component';
 import { MainComponent } from './components/main/main.component';
+import { LogeadoGuard } from './guards/logeado.guard';
+import { BotonResolverService } from './resolvers/boton.resolver.service';
 
 const routes:Routes =[
   {
@@ -15,15 +17,17 @@ const routes:Routes =[
     children:[
       {
         path:'',
-        component:MainComponent
+        component:MainComponent,
+        resolve: {boton : BotonResolverService}
       },
       {
         path:'login',
-        component:LoginFormComponent
+        component:LoginFormComponent,
+        resolve: {boton : BotonResolverService}
       },
       {
         path:'edit',
-        component:MainComponent
+        component:MainComponent,
       },
     ]
   }
