@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanDeactivate, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { CanActivate, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserService } from '../services/user.service';
 
@@ -13,7 +13,11 @@ export class LogeadoGuard implements CanActivate {
 
   canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     let resp = this.userService.usuarioLogeado;
-      return true
+    console.log("GUARD:"+resp);
+    if(!resp){
+      this.router.navigate(['/'])
+    }
+      return resp
   }
 
 }

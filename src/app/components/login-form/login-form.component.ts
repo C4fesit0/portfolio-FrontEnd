@@ -15,7 +15,11 @@ export class LoginFormComponent implements OnInit {
     email: "",
     password:""
   }
-  loginResponse!:boolean;
+  boton = {
+    url:'/',
+    texto:'Volver',
+    class:'btn-danger'
+  }
 
   constructor(private userService:UserService, private router:Router) { }
 
@@ -29,7 +33,7 @@ export class LoginFormComponent implements OnInit {
       console.log(response);
       this.userService.usuarioLogeado = response;
       if(this.userService.usuarioLogeado){
-        this.router.navigateByUrl("/edit");
+        this.router.navigateByUrl("/home/edit");
       }
     })
   }

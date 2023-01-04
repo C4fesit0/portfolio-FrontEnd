@@ -4,6 +4,7 @@ import { ISkill } from 'src/app/interfaces/ISkill.interface';
 import { SkillService } from '../../services/skill.service';
 import { ProjectService } from '../../services/project.service';
 import { UserService } from '../../services/user.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -20,11 +21,16 @@ export class MainComponent implements OnInit {
   skillsFront:ISkill[] = [];
   skillsBack:ISkill[]=[];
 
+  boton= {
+    url:'/login',
+    texto: 'Login',
+    class:'btn-primary'
+  }
+
   constructor(private skillService:SkillService,
-    private projectService:ProjectService, public userService:UserService) { }
+    private projectService:ProjectService, public userService:UserService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-
      //Skills
      this.skillService.getSkills().subscribe( (skills)=>{
       skills.forEach((skill) =>{

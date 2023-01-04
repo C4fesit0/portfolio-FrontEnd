@@ -1,35 +1,34 @@
 //Modulos
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {Routes, RouterModule} from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
 //Componentes
 import { LoginFormComponent } from './components/login-form/login-form.component';
-import { BodyComponent } from './components/body/body.component';
 import { MainComponent } from './components/main/main.component';
+
+//Guard
 import { LogeadoGuard } from './guards/logeado.guard';
-import { BotonResolverService } from './resolvers/boton.resolver.service';
 
 const routes:Routes =[
   {
     path:'',
-    component:BodyComponent,
+    redirectTo:'/home',
+    pathMatch:'full'
+  },{
+    path:'home',
+    component:MainComponent,
     children:[
-      {
-        path:'',
-        component:MainComponent,
-        resolve: {boton : BotonResolverService}
-      },
-      {
-        path:'login',
-        component:LoginFormComponent,
-        resolve: {boton : BotonResolverService}
-      },
       {
         path:'edit',
         component:MainComponent,
+        canActivate: [LogeadoGuard]
       },
     ]
+  },
+  {
+    path:'login',
+    component:LoginFormComponent,
   }
 ]
 

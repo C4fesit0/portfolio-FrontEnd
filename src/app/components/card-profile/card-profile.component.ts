@@ -4,7 +4,7 @@ import { ProfileService } from '../../services/profile.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { IProfileDto } from '../../interfaces/IProfileDto.interface';
-import { Observable, ReplaySubject } from 'rxjs';
+
 
 @Component({
   selector: 'app-card-profile',
@@ -14,6 +14,7 @@ import { Observable, ReplaySubject } from 'rxjs';
 export class CardProfileComponent implements OnInit {
 
   @Input() edit:boolean = false;
+
   profile:IProfile = {
     id: 0,
     nombre: "",

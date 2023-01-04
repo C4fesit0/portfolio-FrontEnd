@@ -15,7 +15,6 @@ import { CardExperienceComponent } from './components/card-experience/card-exper
 import { CardProjectComponent } from './components/card-project/card-project.component';
 import { ButtonComponent } from './components/button/button.component';
 import { ProjectTagComponent } from './components/card-project/project-tag/project-tag.component';
-import { BodyComponent } from './components/body/body.component';
 import { CardSkillsComponent } from './components/card-skills/card-skills.component';
 import { CardEducationComponent } from './components/card-education/card-education.component';
 import { ExperienceComponent } from './components/card-experience/experience/experience.component';
@@ -36,7 +35,6 @@ registerLocaleData(localeEs, "es");
     CardProjectComponent,
     ButtonComponent,
     ProjectTagComponent,
-    BodyComponent,
     CardSkillsComponent,
     CardEducationComponent,
     ExperienceComponent,

@@ -21,4 +21,10 @@ export class UserService {
     }
     return this.http.post<boolean>("http://localhost:8080/usuario/login",body);
   }
+
+  logout():boolean{
+    this.usuarioLogeado =false;
+    return this.usuarioLogeado;
+  }
+
 }

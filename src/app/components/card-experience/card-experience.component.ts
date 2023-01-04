@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IExperience } from '../../interfaces/IExperience.interface';
-import { HttpClient } from '@angular/common/http';
 import { ExperienceService } from '../../services/experience.service';
+import { IExperienceDto } from '../../interfaces/IExperienceDto.interface';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-card-experience',
@@ -14,9 +16,14 @@ import { ExperienceService } from '../../services/experience.service';
 
 export class CardExperienceComponent implements OnInit {
 
+  @Input() edit:boolean =false;
+
   experiences:IExperience[]= [];
 
-  constructor(private experienceService:ExperienceService) { }
+  experienceDto!:IExperienceDto;
+
+
+  constructor(private experienceService:ExperienceService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.experienceService.getExperienceData().subscribe((experiences=>{
@@ -25,4 +32,16 @@ export class CardExperienceComponent implements OnInit {
     }))
   }
 
+
+  public open(modal: any): void {
+    this.modalService.open(modal);
+  }
+
+  actualizarPerfil(data: NgForm):void{
+    console.log(data.value)
+  }
+
+  cargaImagen(event:Event):void{
+    console.log(event)
+  }
 }

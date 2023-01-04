@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, NavigationError, NavigationStart, Router, RouterEvent } from '@angular/router';
 import { UserService } from '../../services/user.service';
 
@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
     },
   ];
 
-  boton= {
+  @Input() boton= {
     url:'',
     texto: '',
     class:''
@@ -49,15 +49,17 @@ export class HeaderComponent implements OnInit {
 
   @ViewChild('loginButton') loginButton!:ElementRef;
 
-  constructor(private route: ActivatedRoute, public userService:UserService) {
-
+  constructor(public userService:UserService) {
    }
   ngOnInit(): void {
-    this.boton= this.route.snapshot.data['boton'];
   }
 
   loginUser():void{
     this.login=true;
+  }
+
+  logoutUser():void{
+    this.userService.logout();
   }
 
 
