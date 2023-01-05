@@ -2,8 +2,8 @@
 
     <div *ngIf="edit" class="row mb-3">
       <div class="col d-flex flex-row-reverse">
-        <button class="btn btn-sm btn-outline-primary" (click)="open(demoModal)">Editar
-          <i class="fa-solid fa-pen-to-square"></i>
+        <button class="btn btn-sm btn-outline-primary" (click)="open(demoModal)">
+          <i class="fa-solid fa-user-pen icon"></i>Editar
         </button>
       </div>
     </div>
@@ -16,7 +16,6 @@
     </div>
     <form (ngSubmit)="actualizarPerfil(updateProfile)" #updateProfile="ngForm" >
     <div class="modal-body">
-
         <div class="mb-3">
           <label for="formFile" class="form-label">Foto de Perfil</label>
           <input (change)="cargaImagen($event)" name="foto_perfil" ngModel class="form-control" type="file" id="foto_perfil">

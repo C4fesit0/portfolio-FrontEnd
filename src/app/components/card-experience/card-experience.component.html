@@ -1,8 +1,8 @@
-<h2 class="card__title">Experiencia</h2><div *ngIf="edit" class="row mb-3">
+
+<div  class="row mb-3">
+  <h2 class="card__title col">Experiencia</h2>
   <div class="col d-flex flex-row-reverse">
-    <button class="btn btn-sm btn-outline-primary" (click)="open(demoModal)">Editar
-      <i class="fa-solid fa-pen-to-square"></i>
-    </button>
+    <button class="btn btn-sm btn-outline-primary btn--edit" (click)="open(demoModal)"><i class="fa-solid fa-plus icon"></i>Agregar</button>
   </div>
 </div>
 
@@ -12,11 +12,10 @@
   <h4 class="modal-title" id="modal-basic-title">Actualizar Perfil</h4>
   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 </div>
-<form (ngSubmit)="actualizarPerfil(updateProfile)" #updateProfile="ngForm" >
-<div class="modal-body">
-
-    <div class="mb-3">
-      <label for="imagen" class="form-label">Foto de Perfil</label>
+<form (ngSubmit)="agregarExperiencia(experienciaForm)" #experienciaForm="ngForm" >
+  <div class="modal-body">
+    <div class="form-outline mb-4">
+      <label for="imagen" class="form-label">Logo</label>
       <input (change)="cargaImagen($event)" name="experienceDto.imagen" ngModel class="form-control" type="file" id="imagen">
     </div>
     <div class="form-outline mb-4">
@@ -24,29 +23,29 @@
       <input name="experienceDto.puesto" [(ngModel)]="experienceDto.puesto" type="text" ngModel id="puesto" class="form-control">
     </div>
     <div class="form-outline mb-4">
-      <label class="form-label" for="titulo">Empresa</label>
+      <label class="form-label" for="empresa">Empresa</label>
       <input name="experienceDto.empresa" [(ngModel)]="experienceDto.empresa" type="text" id="empresa" class="form-control" ngModel>
     </div>
     <div class="form-outline mb-4">
-      <label class="form-label" for="email">Fecha de Inicio</label>
-      <input name="experienceDto.fecha_inicio" [(ngModel)]="experienceDto.fecha_inicio" type="text" id="fecha_inicio" class="form-control" ngModel>
+      <label class="form-label" for="fecha_inicio">Fecha de Inicio</label>
+      <input name="experienceDto.fecha_inicio" [(ngModel)]="experienceDto.fecha_inicio" class="form-control" type="date" id="fecha_inicio" class="form-control" ngModel>
+    </div>
+    <div class="form-outline mb-4 form-check">
+      <input (change)="actualidad($event)" name="{{experienceDto.actualidad}}" ngModel [(ngModel)]="experienceDto.actualidad" id="actualidad" class="form-check-input" type="checkbox" id="actualidad">
+      <label class="form-check-label" for="actualidad">Actualidad</label>
     </div>
     <div class="form-outline mb-4">
-      <label class="form-label" for="telefono">Fecha de Finalizacion</label>
-      <input name="experienceDto.fecha_final" [(ngModel)]="experienceDto.fecha_final" type="text" id="fecha_final" class="form-control" ngModel>
-    </div>
-    <div class="form-outline mb-4">
-      <label class="form-label" for="telefono">Actualidad</label>
-      <input name="experienceDto.actualidad" [(ngModel)]="experienceDto.actualidad" type="checkbox" id="actualidad" class="form-control" ngModel>
+      <label class="form-label" for="fecha_final">Fecha de Finalizacion</label>
+      <input [disabled]="experienceDto.actualidad" name="experienceDto.fecha_final" [(ngModel)]="experienceDto.fecha_final" type="date" id="fecha_final" class="form-control" ngModel>
     </div>
     <div class="form-outline mb-4">
       <label class="form-label" for="descripcion">Descripcion</label>
       <textarea name="experienceDto.descripcion" [(ngModel)]="experienceDto.descripcion" id="descripcion" class="form-control" ngModel></textarea>
     </div>
-</div>
-<div class="modal-footer">
-  <button type="submit" class="btn btn-outline-success" (click)="modal.close('Save click')">Actualizar</button>
-</div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-outline-success" (click)="modal.close('Save click')">Actualizar</button>
+  </div>
 </form>
 
 </ng-template>

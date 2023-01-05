@@ -8,7 +8,7 @@ import { ISkill } from 'src/app/interfaces/ISkill.interface';
 })
 export class CardSkillsComponent implements OnInit {
 
-  @Input() skills !: ISkill[];
+  @Input() skills:ISkill[]=[]
   constructor() { }
 
   ngOnInit(): void {

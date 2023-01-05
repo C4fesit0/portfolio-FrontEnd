@@ -17,13 +17,24 @@ import { NgForm } from '@angular/forms';
 export class CardExperienceComponent implements OnInit {
 
   @Input() edit:boolean =false;
+  archivo!:File;
 
   experiences:IExperience[]= [];
 
-  experienceDto!:IExperienceDto;
+  experienceDto:IExperienceDto = {
+    puesto: '',
+    empresa: '',
+    fecha_inicio: '',
+    fecha_final: '',
+    actualidad: false,
+    descripcion: '',
+    imagen: ''
+  }
 
 
-  constructor(private experienceService:ExperienceService, private modalService: NgbModal) { }
+  constructor(private experienceService:ExperienceService, private modalService: NgbModal) {
+
+   }
 
   ngOnInit(): void {
     this.experienceService.getExperienceData().subscribe((experiences=>{
@@ -37,11 +48,19 @@ export class CardExperienceComponent implements OnInit {
     this.modalService.open(modal);
   }
 
-  actualizarPerfil(data: NgForm):void{
-    console.log(data.value)
+  cargaImagen(event:any){
+    this.archivo = event.target.files[0];
+    //console.log(this.archivo);
   }
 
-  cargaImagen(event:Event):void{
-    console.log(event)
+  agregarExperiencia(data:NgForm):void{
+    console.log("asdasdasd=====>");
+    console.log(data.value);
   }
+
+  actualidad(event: any):void{
+    this.experienceDto.actualidad=event.target.checked;
+  }
+
+
 }
