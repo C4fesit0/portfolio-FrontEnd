@@ -60,9 +60,9 @@ export class CardProfileComponent implements OnInit {
     this.profileDto.sobre_mi=data.value.sobre_mi;
     this.profileDto.titulo=data.value.titulo;
 
-
     console.log(this.profileDto);
-     if(this.archivo){
+
+    if(this.archivo){
       this.profileDto.foto_perfil=this.archivo.name;
       this.profileService.subirFoto(this.archivo,this.profile.id).subscribe(e =>{
         console.log(e);

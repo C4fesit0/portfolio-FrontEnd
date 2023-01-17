@@ -43,19 +43,27 @@ export class CardExperienceComponent implements OnInit {
     }))
   }
 
-
   public open(modal: any): void {
     this.modalService.open(modal);
   }
 
   cargaImagen(event:any){
     this.archivo = event.target.files[0];
-    //console.log(this.archivo);
+    console.log(this.archivo);
   }
 
   agregarExperiencia(data:NgForm):void{
-    console.log("asdasdasd=====>");
+    console.log("NgForm=====>");
     console.log(data.value);
+    console.log("Experiencia=====>");
+    console.log(this.experienceDto);
+    this.experienceService.createExperience(this.experienceDto).subscribe((e)=>{
+      console.log(e);
+    });
+    this.experienceService.getExperienceData().subscribe((experiences=>{
+      this.experiences = experiences;
+      console.log(this.experiences)
+    }))
   }
 
   actualidad(event: any):void{

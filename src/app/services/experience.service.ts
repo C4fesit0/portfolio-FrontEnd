@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IExperience } from '../interfaces/IExperience.interface';
+import { IExperienceDto } from '../interfaces/IExperienceDto.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -15,4 +16,9 @@ export class ExperienceService {
   getExperienceData():Observable<IExperience[]>{
     return this.http.get<IExperience[]>(this.apiURL);
   }
+
+  createExperience(data:IExperienceDto):Observable<any>{
+    return this.http.post<any>(this.apiURL+"crear",data);
+  }
+
 }

@@ -9,7 +9,7 @@
 <!-- Modal -->
 <ng-template #demoModal let-modal>
 <div class="modal-header">
-  <h4 class="modal-title" id="modal-basic-title">Actualizar Perfil</h4>
+  <h4 class="modal-title" id="modal-basic-title">Agregar Experiencia Laboral</h4>
   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 </div>
 <form (ngSubmit)="agregarExperiencia(experienciaForm)" #experienciaForm="ngForm" >
@@ -20,27 +20,27 @@
     </div>
     <div class="form-outline mb-4">
       <label class="form-label" for="puesto">Puesto</label>
-      <input name="experienceDto.puesto" [(ngModel)]="experienceDto.puesto" type="text" ngModel id="puesto" class="form-control">
+      <input required  name="puesto" [(ngModel)]="experienceDto.puesto" type="text" ngModel id="puesto" class="form-control">
     </div>
     <div class="form-outline mb-4">
       <label class="form-label" for="empresa">Empresa</label>
-      <input name="experienceDto.empresa" [(ngModel)]="experienceDto.empresa" type="text" id="empresa" class="form-control" ngModel>
+      <input required  name="empresa" [(ngModel)]="experienceDto.empresa" type="text" id="empresa" class="form-control" ngModel>
     </div>
     <div class="form-outline mb-4">
       <label class="form-label" for="fecha_inicio">Fecha de Inicio</label>
-      <input name="experienceDto.fecha_inicio" [(ngModel)]="experienceDto.fecha_inicio" class="form-control" type="date" id="fecha_inicio" class="form-control" ngModel>
+      <input required name="fecha_inicio" [(ngModel)]="experienceDto.fecha_inicio" class="form-control" type="date" id="fecha_inicio" class="form-control" ngModel>
     </div>
     <div class="form-outline mb-4 form-check">
-      <input (change)="actualidad($event)" name="{{experienceDto.actualidad}}" ngModel [(ngModel)]="experienceDto.actualidad" id="actualidad" class="form-check-input" type="checkbox" id="actualidad">
+      <input (change)="actualidad($event)" name="actualidad" ngModel [(ngModel)]="experienceDto.actualidad" id="actualidad" class="form-check-input" type="checkbox"[checked]="false" id="actualidad">
       <label class="form-check-label" for="actualidad">Actualidad</label>
     </div>
     <div class="form-outline mb-4">
       <label class="form-label" for="fecha_final">Fecha de Finalizacion</label>
-      <input [disabled]="experienceDto.actualidad" name="experienceDto.fecha_final" [(ngModel)]="experienceDto.fecha_final" type="date" id="fecha_final" class="form-control" ngModel>
+      <input [disabled]="experienceDto.actualidad" name="fecha_final" [(ngModel)]="experienceDto.fecha_final" type="date" id="fecha_final" class="form-control" ngModel>
     </div>
     <div class="form-outline mb-4">
       <label class="form-label" for="descripcion">Descripcion</label>
-      <textarea name="experienceDto.descripcion" [(ngModel)]="experienceDto.descripcion" id="descripcion" class="form-control" ngModel></textarea>
+      <textarea name="descripcion" [(ngModel)]="experienceDto.descripcion" id="descripcion" class="form-control" ngModel></textarea>
     </div>
   </div>
   <div class="modal-footer">
