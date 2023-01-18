@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output,EventEmitter } from '@angular/core';
 import { IExperience } from '../../../interfaces/IExperience.interface';
 
 @Component({
@@ -9,10 +9,16 @@ import { IExperience } from '../../../interfaces/IExperience.interface';
 export class ExperienceComponent implements OnInit {
 
   @Input() experience!:IExperience;
+  @Output() deleteExp = new EventEmitter<IExperience>();
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  eliminarExp(){
+    console.log("EMITTIENDO DATOS");
+    this.deleteExp.emit(this.experience);
   }
 
 }

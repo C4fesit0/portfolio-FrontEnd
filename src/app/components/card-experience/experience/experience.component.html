@@ -1,8 +1,15 @@
+
 <div class="experience">
-  <img src="{{experience.imagen}}" alt="" class="experience__image">
+  <div>
+    <img src="{{experience.imagen}}" alt="" class="experience__image">
   <div class="experience__info">
     <p data-section="experience" data-value="first-job-dates" class="experience__time">{{experience.fecha_inicio | date:'MMMM y' | titlecase}} - {{experience.fecha_final | date:'MMMM y' | titlecase}}</p>
     <h5 data-section="experience" data-value="first-job-title" class="experience__job">{{experience.puesto}}</h5>
     <p data-section="experience" data-value="first-job-description" class="experience__description">{{experience.descripcion}}</p>
+  </div>
+  </div>
+  <div class="col d-flex flex-row-reverse gap-2 mb-2">
+    <button class="btn btn-sm btn-outline-danger btn--edit" (click)="eliminarExp()"><i class="fa-solid fa-trash icon"></i></button>
+    <button class="btn btn-sm btn-outline-info btn--edit" (click)="eliminarExp()"><i class="fa-solid fa-pen-to-square icon"></i></button>
   </div>
 </div>

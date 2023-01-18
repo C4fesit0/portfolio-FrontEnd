@@ -22,6 +22,7 @@ export class CardExperienceComponent implements OnInit {
   experiences:IExperience[]= [];
 
   experienceDto:IExperienceDto = {
+    id_persona:1,
     puesto: '',
     empresa: '',
     fecha_inicio: '',
@@ -59,15 +60,33 @@ export class CardExperienceComponent implements OnInit {
     console.log(this.experienceDto);
     this.experienceService.createExperience(this.experienceDto).subscribe((e)=>{
       console.log(e);
+      if(e.id){
+        this.experiences.push(e);
+      }else{
+        console.log(e);
+      }
     });
-    this.experienceService.getExperienceData().subscribe((experiences=>{
-      this.experiences = experiences;
-      console.log(this.experiences)
-    }))
   }
+
 
   actualidad(event: any):void{
     this.experienceDto.actualidad=event.target.checked;
+  }
+
+
+  eliminarExperiencia(data: any){
+    console.log("RECIBIENDO DATA")
+    console.log(data);
+    if(data.id){
+      this.experienceService.deleteExperience(data.id).subscribe((e)=>{
+        console.log(e);
+        if(e){
+          this.experiences = this.experiences.filter((exp)=>{
+            return exp.id!=data.id
+          })
+        }
+      })
+    }
   }
 
 

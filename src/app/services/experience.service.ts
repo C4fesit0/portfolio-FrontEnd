@@ -21,4 +21,8 @@ export class ExperienceService {
     return this.http.post<any>(this.apiURL+"crear",data);
   }
 
+  deleteExperience(id:number):Observable<any>{
+    return this.http.delete<any>(this.apiURL+'eliminar/'+id);
+  }
+
 }

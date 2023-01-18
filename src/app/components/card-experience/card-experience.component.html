@@ -49,4 +49,4 @@
 </form>
 
 </ng-template>
-<app-experience [experience]="experience" *ngFor="let experience of experiences"></app-experience>
+<app-experience (deleteExp)="eliminarExperiencia($event)" [experience]="experience" *ngFor="let experience of experiences"></app-experience>

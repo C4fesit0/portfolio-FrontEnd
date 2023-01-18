@@ -1,4 +1,5 @@
 export interface IExperienceDto {
+  id_persona: number;
   puesto: string;
   empresa: string;
   fecha_inicio: string;
