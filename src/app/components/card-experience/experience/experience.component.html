@@ -8,8 +8,8 @@
     <p data-section="experience" data-value="first-job-description" class="experience__description">{{experience.descripcion}}</p>
   </div>
   </div>
-  <div class="col d-flex flex-row-reverse gap-2 mb-2">
-    <button class="btn btn-sm btn-outline-danger btn--edit" (click)="eliminarExp()"><i class="fa-solid fa-trash icon"></i></button>
-    <button class="btn btn-sm btn-outline-info btn--edit" (click)="eliminarExp()"><i class="fa-solid fa-pen-to-square icon"></i></button>
+  <div *ngIf="edit" class="col d-flex flex-row-reverse gap-2 mb-2">
+    <button class="btn btn-sm btn-outline-danger btn--edit" (click)="eliminarExperiencia()"><i class="fa-solid fa-trash icon"></i></button>
+    <app-edit-modal [edit]="edit" [experience]="experience"></app-edit-modal>
   </div>
 </div>

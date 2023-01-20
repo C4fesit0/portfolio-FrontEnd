@@ -8,17 +8,21 @@ import { IExperience } from '../../../interfaces/IExperience.interface';
 })
 export class ExperienceComponent implements OnInit {
 
+  @Input() edit:boolean = false;
   @Input() experience!:IExperience;
   @Output() deleteExp = new EventEmitter<IExperience>();
+  @Output() updateExp = new EventEmitter<IExperience>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  eliminarExp(){
-    console.log("EMITTIENDO DATOS");
+  eliminarExperiencia(){
     this.deleteExp.emit(this.experience);
   }
+
+
+
 
 }

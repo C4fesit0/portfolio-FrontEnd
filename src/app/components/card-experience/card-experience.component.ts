@@ -75,7 +75,6 @@ export class CardExperienceComponent implements OnInit {
 
 
   eliminarExperiencia(data: any){
-    console.log("RECIBIENDO DATA")
     console.log(data);
     if(data.id){
       this.experienceService.deleteExperience(data.id).subscribe((e)=>{
@@ -86,6 +85,19 @@ export class CardExperienceComponent implements OnInit {
           })
         }
       })
+    }
+  }
+
+  resetExperienceDto(){
+    this.experienceDto = {
+      id_persona:1,
+      puesto: '',
+      empresa: '',
+      fecha_inicio: '',
+      fecha_final: '',
+      actualidad: false,
+      descripcion: '',
+      imagen: ''
     }
   }
 

@@ -28,7 +28,8 @@
     </div>
     <div class="form-outline mb-4">
       <label class="form-label" for="fecha_inicio">Fecha de Inicio</label>
-      <input required name="fecha_inicio" [(ngModel)]="experienceDto.fecha_inicio" class="form-control" type="date" id="fecha_inicio" class="form-control" ngModel>
+      <input required name="fecha_inicio" [(ngModel)]="experienceDto.fecha_inicio" class="form-control" type="date" id="fecha_inicio" class="form-control" placeholder="dd-mm-yyyy" value=""
+      min="1997-01-01" max="2030-12-31" ngModel>
     </div>
     <div class="form-outline mb-4 form-check">
       <input (change)="actualidad($event)" name="actualidad" ngModel [(ngModel)]="experienceDto.actualidad" id="actualidad" class="form-check-input" type="checkbox"[checked]="false" id="actualidad">
@@ -36,7 +37,8 @@
     </div>
     <div class="form-outline mb-4">
       <label class="form-label" for="fecha_final">Fecha de Finalizacion</label>
-      <input [disabled]="experienceDto.actualidad" name="fecha_final" [(ngModel)]="experienceDto.fecha_final" type="date" id="fecha_final" class="form-control" ngModel>
+      <input [disabled]="experienceDto.actualidad" name="fecha_final" [(ngModel)]="experienceDto.fecha_final" type="date" id="fecha_final" class="form-control" placeholder="dd-mm-yyyy" value=""
+      min="1997-01-01" max="2030-12-31" ngModel>
     </div>
     <div class="form-outline mb-4">
       <label class="form-label" for="descripcion">Descripcion</label>
@@ -47,6 +49,7 @@
     <button type="submit" class="btn btn-outline-success" (click)="modal.close('Save click')">Actualizar</button>
   </div>
 </form>
-
 </ng-template>
+
+
 <app-experience (deleteExp)="eliminarExperiencia($event)" [experience]="experience" *ngFor="let experience of experiences"></app-experience>

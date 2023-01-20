@@ -24,6 +24,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import localeEs from "@angular/common/locales/es";
 import { registerLocaleData } from "@angular/common";
 import { MainComponent } from './components/main/main.component';
+import { EditModalComponent } from './components/card-experience/edit-modal/edit-modal.component';
 registerLocaleData(localeEs, "es");
 
 @NgModule({
@@ -40,7 +41,8 @@ registerLocaleData(localeEs, "es");
     ExperienceComponent,
     EducationComponent,
     LoginFormComponent,
-    MainComponent
+    MainComponent,
+    EditModalComponent
   ],
   imports: [
     BrowserModule,
