@@ -16,7 +16,7 @@ import { NgForm } from '@angular/forms';
 
 export class CardExperienceComponent implements OnInit {
 
-  @Input() edit:boolean =false;
+  @Input() edit:boolean =true;
   archivo!:File;
 
   experiences:IExperience[]= [];
@@ -86,6 +86,14 @@ export class CardExperienceComponent implements OnInit {
         }
       })
     }
+  }
+
+  actualizarExperiencia(experiencia:IExperienceDto){
+    console.log(experiencia);
+    this.experiences.forEach(element => {
+      console.log(element);
+      if(element.id = experiencia.id) element= experiencia;
+    });
   }
 
   resetExperienceDto(){

@@ -1,7 +1,7 @@
 
 <div  class="row mb-3">
   <h2 class="card__title col">Experiencia</h2>
-  <div class="col d-flex flex-row-reverse">
+  <div *ngIf="this.edit" class="col d-flex flex-row-reverse">
     <button class="btn btn-sm btn-outline-primary btn--edit" (click)="open(demoModal)"><i class="fa-solid fa-plus icon"></i>Agregar</button>
   </div>
 </div>
@@ -52,4 +52,4 @@
 </ng-template>
 
 
-<app-experience (deleteExp)="eliminarExperiencia($event)" [experience]="experience" *ngFor="let experience of experiences"></app-experience>
+<app-experience [edit]="edit" (updateExp)="actualizarExperiencia($event)" (deleteExp)="eliminarExperiencia($event)" [experience]="experience" *ngFor="let experience of experiences"></app-experience>

@@ -1,4 +1,4 @@
-<button *ngIf="edit" class="btn btn-sm btn-outline-primary btn--edit" (click)="open(demoModal)"><i class="fa-solid fa-pen-to-square icon"></i></button>
+<button class="btn btn-sm btn-outline-primary btn--edit" (click)="open(demoModal)"><i class="fa-solid fa-pen-to-square icon"></i></button>
 
 <!-- Modal -->
 <ng-template #demoModal let-modal>
@@ -14,29 +14,29 @@
       </div>
       <div class="form-outline mb-4">
         <label class="form-label" for="puesto">Puesto</label>
-        <input required  name="puesto" [(ngModel)]="experience.puesto" type="text" ngModel id="puesto" class="form-control">
+        <input required  name="puesto" [ngModel]="experience.puesto" type="text" ngModel id="puesto" class="form-control">
       </div>
       <div class="form-outline mb-4">
         <label class="form-label" for="empresa">Empresa</label>
-        <input required  name="empresa" [(ngModel)]="experience.empresa" type="text" id="empresa" class="form-control" ngModel>
+        <input required  name="empresa" [ngModel]="experience.empresa" type="text" id="empresa" class="form-control" ngModel>
       </div>
       <div class="form-outline mb-4">
         <label class="form-label" for="fecha_inicio">Fecha de Inicio</label>
-        <input required name="fecha_inicio" [(ngModel)]="experience.fecha_inicio" class="form-control" type="date" id="fecha_inicio" class="form-control" placeholder="dd-mm-yyyy" value=""
+        <input required name="fecha_inicio" [ngModel]="experience.fecha_inicio" class="form-control" type="date" id="fecha_inicio" class="form-control" placeholder="dd-mm-yyyy" value=""
         min="1997-01-01" max="2030-12-31" ngModel>
       </div>
       <div class="form-outline mb-4 form-check">
-        <input (change)="actualidad($event)" name="actualidad" ngModel [(ngModel)]="experience.actualidad" id="actualidad" class="form-check-input" type="checkbox"[checked]="false" id="actualidad">
+        <input (change)="actualidad($event)" name="actualidad" ngModel [ngModel]="experience.actualidad" id="actualidad" class="form-check-input" type="checkbox"[checked]="false" id="actualidad">
         <label class="form-check-label" for="actualidad">Actualidad</label>
       </div>
       <div class="form-outline mb-4">
         <label class="form-label" for="fecha_final">Fecha de Finalizacion</label>
-        <input [disabled]="experience.actualidad" name="fecha_final" [(ngModel)]="experience.fecha_final" type="date" id="fecha_final" class="form-control" placeholder="dd-mm-yyyy" value=""
+        <input [disabled]="experience.actualidad" name="fecha_final" [ngModel]="experience.fecha_final" type="date" id="fecha_final" class="form-control" placeholder="dd-mm-yyyy" value=""
         min="1997-01-01" max="2030-12-31" ngModel>
       </div>
       <div class="form-outline mb-4">
         <label class="form-label" for="descripcion">Descripcion</label>
-        <textarea name="descripcion" [(ngModel)]="experience.descripcion" id="descripcion" class="form-control" ngModel></textarea>
+        <textarea name="descripcion" [ngModel]="experience.descripcion" id="descripcion" class="form-control" ngModel></textarea>
       </div>
     </div>
     <div class="modal-footer">

@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IExperience } from '../../../interfaces/IExperience.interface';
 import { NgForm } from '@angular/forms';
+import { IExperienceDto } from '../../../interfaces/IExperienceDto.interface';
 
 @Component({
   selector: 'app-edit-modal',
@@ -10,10 +11,9 @@ import { NgForm } from '@angular/forms';
 })
 export class EditModalComponent {
 
-  @Input() edit:boolean=false;
   @Input() experience!: IExperience;
   image!:File;
-  experiences:IExperience[]= [];
+  @Output() actualizarEvent= new EventEmitter<IExperienceDto>();
 
   constructor(private modalService: NgbModal) {
 
@@ -24,7 +24,9 @@ export class EditModalComponent {
   }
 
   actualizarExperiencia(data: NgForm){
-    console.log(data.value)
+    console.log(data.value);
+    console.log(this.experience);
+    //this.actualizarEvent.emit(this.experience);
   }
 
   cargaImagen(event:any){
