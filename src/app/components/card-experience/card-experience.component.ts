@@ -58,14 +58,21 @@ export class CardExperienceComponent implements OnInit {
     console.log(data.value);
     console.log("Experiencia=====>");
     console.log(this.experienceDto);
+
     this.experienceService.createExperience(this.experienceDto).subscribe((e)=>{
-      console.log(e);
-      if(e.id){
-        this.experiences.push(e);
-      }else{
+      this.experienceService.uploadImage(this.archivo,e.id).subscribe((e)=>{
         console.log(e);
-      }
+        console.log(e);
+        if(e.id){
+          this.experiences.push(e);
+        }else{
+          console.log(e);
+        }
+      })
     });
+
+    this.resetExperienceDto();
+
   }
 
 
@@ -92,7 +99,7 @@ export class CardExperienceComponent implements OnInit {
     console.log(experiencia);
     this.experiences.forEach(element => {
       console.log(element);
-      if(element.id = experiencia.id) element= experiencia;
+      /* if(element.id = experiencia.id) element= experiencia; */
     });
   }
 

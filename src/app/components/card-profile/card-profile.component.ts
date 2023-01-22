@@ -91,7 +91,6 @@ export class CardProfileComponent implements OnInit {
         console.log(reader.result);
         this.foto_perfil =reader.result?.toString();
     };
-}
-
+  }
 
 }

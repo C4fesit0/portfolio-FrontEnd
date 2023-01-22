@@ -10,19 +10,28 @@ import { IExperienceDto } from '../interfaces/IExperienceDto.interface';
 export class ExperienceService {
 
   //apiURL = 'http://localhost:3000/experience';
-  apiURL = 'http://localhost:8080/experiencia/';
+  endPoint = 'http://localhost:8080/experiencia/';
   constructor(private http:HttpClient) { }
 
   getExperienceData():Observable<IExperience[]>{
-    return this.http.get<IExperience[]>(this.apiURL);
+    return this.http.get<IExperience[]>(this.endPoint);
   }
 
   createExperience(data:IExperienceDto):Observable<any>{
-    return this.http.post<any>(this.apiURL+"crear",data);
+    return this.http.post<any>(this.endPoint+"crear",data);
   }
 
   deleteExperience(id:number):Observable<any>{
-    return this.http.delete<any>(this.apiURL+'eliminar/'+id);
+    return this.http.delete<any>(this.endPoint+'eliminar/'+id);
   }
 
+  uploadImage(archivo:File, id:number):Observable<IExperience>{
+    let data = new FormData;
+    data.append("file",archivo);
+    return this.http.post<IExperience>(this.endPoint+"upload/"+id,data);
+   }
+
+   getImagen(id:number):Observable<any>{
+    return this.http.get<any>(this.endPoint+"image/"+id);
+   }
 }
