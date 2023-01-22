@@ -12,7 +12,8 @@ export class ExperienceComponent implements OnInit {
   @Input() edit:boolean = false;
   @Input() experience!:IExperience;
   @Output() deleteExp = new EventEmitter<IExperience>();
-  @Output() updateExp = new EventEmitter<IExperienceDto>();
+  @Output() updateExp = new EventEmitter<IExperience>();
+  @Output() upadateImageExp= new EventEmitter<File>();
 
   constructor() { }
 
@@ -23,11 +24,15 @@ export class ExperienceComponent implements OnInit {
     this.deleteExp.emit(this.experience);
   }
 
-  actualizarExperiencia(experiencia:IExperienceDto){
-    console.log(experiencia)
+  actualizarExperiencia(experiencia:IExperience){
+    console.log('Experience Component')
     this.updateExp.emit(experiencia);
   }
 
+  actualizarImagen(image:File){
+    console.log(image)
+    this.upadateImageExp.emit(image);
+  }
 
 
 

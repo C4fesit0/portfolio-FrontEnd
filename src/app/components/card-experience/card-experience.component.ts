@@ -4,7 +4,6 @@ import { IExperience } from '../../interfaces/IExperience.interface';
 import { ExperienceService } from '../../services/experience.service';
 import { IExperienceDto } from '../../interfaces/IExperienceDto.interface';
 import { NgForm } from '@angular/forms';
-
 @Component({
   selector: 'app-card-experience',
   templateUrl: './card-experience.component.html',
@@ -95,12 +94,44 @@ export class CardExperienceComponent implements OnInit {
     }
   }
 
-  actualizarExperiencia(experiencia:IExperienceDto){
+  actualizarExperiencia(experiencia:IExperience){
     console.log(experiencia);
-    this.experiences.forEach(element => {
-      console.log(element);
-      /* if(element.id = experiencia.id) element= experiencia; */
-    });
+    console.log('CARD EXPERIENCE');
+    this.setExperienceDto(experiencia);
+
+    this.experienceService.updateExperience(experiencia.id,this.experienceDto).subscribe((e)=>{
+      console.log(this.archivo);
+      if(this.archivo){
+        this.experienceService.uploadImage(this.archivo,experiencia.id).subscribe((e)=>{
+          console.log('SE SUBIO LA IMAGEN');
+          let index = this.experiences.findIndex((exp)=>exp.id == e.id)
+          this.experiences[index] = e;
+          this.archivo;
+        })
+      }else{
+        console.log('NO SE SUBE IMAGEN');
+        let index = this.experiences.findIndex((exp)=>exp.id == e.id)
+        this.experiences[index] = e;
+      }
+
+
+    })
+  }
+
+  actualizarImagen(image:File){
+    console.log('CARD-EXP')
+    console.log(image);
+   this.archivo = image;
+  }
+
+  setExperienceDto(experiencia:IExperience){
+    this.experienceDto.puesto = experiencia.puesto;
+    this.experienceDto.actualidad = experiencia.actualidad;
+    this.experienceDto.empresa = experiencia.empresa;
+    this.experienceDto.descripcion = experiencia.descripcion;
+    this.experienceDto.fecha_inicio = experiencia.fecha_inicio;
+    this.experienceDto.fecha_final = experiencia.fecha_final;
+    this.experienceDto.imagen = experiencia.imagen;
   }
 
   resetExperienceDto(){

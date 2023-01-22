@@ -25,6 +25,10 @@ export class ExperienceService {
     return this.http.delete<any>(this.endPoint+'eliminar/'+id);
   }
 
+  updateExperience(id:number,experience:IExperienceDto):Observable<any>{
+    return this.http.put<IExperience>(this.endPoint+'actualizar/'+id,experience);
+  }
+
   uploadImage(archivo:File, id:number):Observable<IExperience>{
     let data = new FormData;
     data.append("file",archivo);

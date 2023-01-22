@@ -12,8 +12,19 @@ import { IExperienceDto } from '../../../interfaces/IExperienceDto.interface';
 export class EditModalComponent {
 
   @Input() experience!: IExperience;
+  experienceUpdated:IExperience = {
+    id: 0,
+    puesto: '',
+    empresa: '',
+    fecha_inicio: '',
+    fecha_final: '',
+    actualidad: false,
+    descripcion: '',
+    imagen: ''
+  };
   image!:File;
-  @Output() actualizarEvent= new EventEmitter<IExperienceDto>();
+  @Output() actualizarEvent= new EventEmitter<IExperience>();
+  @Output() actualizarImageEvent= new EventEmitter<File>();
 
   constructor(private modalService: NgbModal) {
 
@@ -24,9 +35,24 @@ export class EditModalComponent {
   }
 
   actualizarExperiencia(data: NgForm){
-    console.log(data.value);
-    console.log(this.experience);
-    //this.actualizarEvent.emit(this.experience);
+    //console.log(data.value);
+    this.setExperienciaData(data.value);
+    this.actualizarEvent.emit(this.experienceUpdated);
+    if(this.image){
+      console.log('SENDING IMAGE')
+      this.actualizarImageEvent.emit(this.image);
+    }
+  }
+
+  setExperienciaData(data: IExperience){
+    this.experienceUpdated.id = this.experience.id;
+    this.experienceUpdated.puesto = data.puesto;
+    this.experienceUpdated.empresa = data.empresa;
+    this.experienceUpdated.fecha_inicio = data.fecha_inicio;
+    this.experienceUpdated.actualidad = data.actualidad;
+    this.experienceUpdated.fecha_final = data.fecha_final;
+    this.experienceUpdated.descripcion = data.descripcion;
+    console.log(this.experienceUpdated)
   }
 
   cargaImagen(event:any){

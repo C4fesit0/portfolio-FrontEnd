@@ -10,6 +10,6 @@
   </div>
   <div *ngIf="this.edit" class="col d-flex flex-row-reverse gap-2 mb-2">
     <button class="btn btn-sm btn-outline-danger btn--edit" (click)="eliminarExperiencia()"><i class="fa-solid fa-trash"></i></button>
-    <app-edit-modal (actualizarEvent)="actualizarExperiencia($event)" [experience]="experience"></app-edit-modal>
+    <app-edit-modal (actualizarImageEvent)="actualizarImagen($event)" (actualizarEvent)="actualizarExperiencia($event)" [experience]="experience"></app-edit-modal>
   </div>
 </div>
