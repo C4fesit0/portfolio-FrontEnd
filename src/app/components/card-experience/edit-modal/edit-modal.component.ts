@@ -52,6 +52,14 @@ export class EditModalComponent {
     this.experienceUpdated.actualidad = data.actualidad;
     this.experienceUpdated.fecha_final = data.fecha_final;
     this.experienceUpdated.descripcion = data.descripcion;
+
+    console.log(this.image);
+    if(this.image)
+    {
+      this.experienceUpdated.imagen = this.image.name;
+    }else{
+      this.experienceUpdated.imagen = this.experience.imagen;
+    }
     console.log(this.experienceUpdated)
   }
 

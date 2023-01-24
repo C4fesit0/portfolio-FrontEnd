@@ -41,6 +41,7 @@ export class CardExperienceComponent implements OnInit {
       this.experiences = experiences;
       //console.log(this.experiences)
     }))
+
   }
 
   public open(modal: any): void {
@@ -93,7 +94,7 @@ export class CardExperienceComponent implements OnInit {
       })
     }
   }
-
+/*
   actualizarExperiencia(experiencia:IExperience){
     console.log(experiencia);
     console.log('CARD EXPERIENCE');
@@ -104,16 +105,17 @@ export class CardExperienceComponent implements OnInit {
       if(this.archivo){
         this.experienceService.uploadImage(this.archivo,experiencia.id).subscribe((e)=>{
           console.log('SE SUBIO LA IMAGEN');
+
           let index = this.experiences.findIndex((exp)=>exp.id == e.id)
           this.experiences[index] = e;
-          this.archivo;
+          console.log(this.experiences[index]);
+          console.log(e);
         })
       }else{
         console.log('NO SE SUBE IMAGEN');
         let index = this.experiences.findIndex((exp)=>exp.id == e.id)
         this.experiences[index] = e;
       }
-
 
     })
   }
@@ -122,9 +124,9 @@ export class CardExperienceComponent implements OnInit {
     console.log('CARD-EXP')
     console.log(image);
    this.archivo = image;
-  }
+  } */
 
-  setExperienceDto(experiencia:IExperience){
+ /*  setExperienceDto(experiencia:IExperience){
     this.experienceDto.puesto = experiencia.puesto;
     this.experienceDto.actualidad = experiencia.actualidad;
     this.experienceDto.empresa = experiencia.empresa;
@@ -132,7 +134,7 @@ export class CardExperienceComponent implements OnInit {
     this.experienceDto.fecha_inicio = experiencia.fecha_inicio;
     this.experienceDto.fecha_final = experiencia.fecha_final;
     this.experienceDto.imagen = experiencia.imagen;
-  }
+  } */
 
   resetExperienceDto(){
     this.experienceDto = {
@@ -146,6 +148,8 @@ export class CardExperienceComponent implements OnInit {
       imagen: ''
     }
   }
+
+
 
 
 }
