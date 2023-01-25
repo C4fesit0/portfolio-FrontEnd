@@ -50,19 +50,19 @@ export class CardExperienceComponent implements OnInit {
 
   cargaImagen(event:any){
     this.archivo = event.target.files[0];
-    console.log(this.archivo);
+    //console.log(this.archivo);
   }
 
   agregarExperiencia(data:NgForm):void{
-    console.log("NgForm=====>");
-    console.log(data.value);
-    console.log("Experiencia=====>");
-    console.log(this.experienceDto);
+    //console.log("NgForm=====>");
+    //console.log(data.value);
+    //console.log("Experiencia=====>");
+    //console.log(this.experienceDto);
 
     this.experienceService.createExperience(this.experienceDto).subscribe((e)=>{
       this.experienceService.uploadImage(this.archivo,e.id).subscribe((e)=>{
-        console.log(e);
-        console.log(e);
+        //console.log(e);
+        //console.log(e);
         if(e.id){
           this.experiences.push(e);
         }else{
@@ -82,10 +82,10 @@ export class CardExperienceComponent implements OnInit {
 
 
   eliminarExperiencia(data: any){
-    console.log(data);
+    //console.log(data);
     if(data.id){
       this.experienceService.deleteExperience(data.id).subscribe((e)=>{
-        console.log(e);
+        //console.log(e);
         if(e){
           this.experiences = this.experiences.filter((exp)=>{
             return exp.id!=data.id

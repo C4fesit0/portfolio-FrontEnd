@@ -71,7 +71,6 @@ export class CardProfileComponent implements OnInit {
       this.profileDto.foto_perfil = this.profile.foto_perfil
     }
 
-
     this.profileService.actualizarPerfil(this.profileDto).subscribe(e =>{
       console.log(e);
     });

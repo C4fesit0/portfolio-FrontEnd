@@ -13,34 +13,58 @@ export class ExperienceComponent implements OnInit {
   @Input() edit:boolean = false;
   @Input() experience!:IExperience;
   @Output() deleteExp = new EventEmitter<IExperience>();
-  @Output() updateExp = new EventEmitter<IExperience>();
-  @Output() upadateImageExp = new EventEmitter<File>();
+
+  experienceDto:IExperienceDto = {
+    id_persona:1,
+    puesto: '',
+    empresa: '',
+    fecha_inicio: '',
+    fecha_final: '',
+    actualidad: false,
+    descripcion: '',
+    imagen: ''
+  }
 
   image!:string | undefined;
+
+  archivo!:File;
 
   constructor(private experienceService:ExperienceService) { }
 
   ngOnInit(): void {
-    console.log(this.experience);
-    this.experienceService.getImagen(this.experience.id).subscribe((e)=>{
-      console.log(e);
-    })
   }
 
   eliminarExperiencia(){
     this.deleteExp.emit(this.experience);
   }
 
+
   actualizarExperiencia(experiencia:IExperience){
-    console.log('Experience Component')
-    this.updateExp.emit(experiencia);
+    //console.log(experiencia);
+   //console.log('CARD EXPERIENCE');
+    this.setExperienceDto(experiencia);
+
+    this.experienceService.updateExperience(experiencia.id,this.experienceDto).subscribe((e)=>{
+        if(this.image){
+          //console.log('hay imagen');
+          this.experienceService.uploadImage(this.archivo,experiencia.id).subscribe((e)=>{
+            //console.log('SE SUBIO LA IMAGEN');
+            this.experience = e;
+          })
+        }else{
+          //console.log('no hay imagen');
+          this.experience = e;
+        }
+    })
   }
 
   actualizarImagen(image:File){
-    console.log(image)
-    this.upadateImageExp.emit(image);
-    this.convertirArchivo(image);
+    //console.log('CARD-EXP')
+    //console.log(image);
+    this.archivo = image;
+   this.convertirArchivo(image);
   }
+
 
   convertirArchivo(file:File) {
     const reader = new FileReader();
@@ -51,6 +75,14 @@ export class ExperienceComponent implements OnInit {
     };
   }
 
-
+  setExperienceDto(experiencia:IExperience){
+    this.experienceDto.puesto = experiencia.puesto;
+    this.experienceDto.actualidad = experiencia.actualidad;
+    this.experienceDto.empresa = experiencia.empresa;
+    this.experienceDto.descripcion = experiencia.descripcion;
+    this.experienceDto.fecha_inicio = experiencia.fecha_inicio;
+    this.experienceDto.fecha_final = experiencia.fecha_final;
+    this.experienceDto.imagen = experiencia.imagen;
+  }
 
 }
