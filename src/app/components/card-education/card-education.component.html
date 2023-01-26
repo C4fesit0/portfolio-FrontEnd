@@ -1,2 +1,57 @@
-<h2 class="card__title">Educacion</h2>
-<app-education [education]="education" *ngFor="let education of educationData"></app-education>
+<div  class="row mb-3">
+  <h2 class="card__title col">Educacion</h2>
+  <div *ngIf="this.edit" class="col d-flex flex-row-reverse">
+    <button class="btn btn-sm btn-outline-primary btn--edit" (click)="open(demoModal)"><i class="fa-solid fa-plus icon"></i>Agregar</button>
+  </div>
+</div>
+
+<!-- Modal -->
+<ng-template #demoModal let-modal>
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Agregar Experiencia Laboral</h4>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+</div>
+ <form (ngSubmit)="agregarEducacion(educacionForm)" #educacionForm="ngForm" >
+  <div class="modal-body">
+    <div class="form-outline mb-4">
+      <label for="imagen" class="form-label">Logo</label>
+      <input (change)="cargarImagen($event)" name="imagen" ngModel class="form-control" type="file" id="imagen">
+    </div>
+    <div class="form-outline mb-4">
+      <label class="form-label" for="titulo">Titulo</label>
+      <input required  name="titulo" [(ngModel)]="educacionDto.titulo" type="text" ngModel id="titulo" class="form-control">
+    </div>
+    <div class="form-outline mb-4">
+      <label class="form-label" for="institucion">Institucion</label>
+      <input required  name="institucion" [(ngModel)]="educacionDto.institucion" type="text" ngModel id="institucion" class="form-control">
+    </div>
+    <div class="form-outline mb-4">
+      <label class="form-label" for="nivel estudio">Nivel de Estudio</label>
+      <select [(ngModel)]="educacionDto.id_nivel_estudio" class="form-select" id="nivel_estudio" name="nivel estudio" (change)="nivelEstudio($event)">
+        <option value="1">Primario</option>
+        <option value="2">Secundario</option>
+        <option value="3">Universitario</option>
+      </select>
+    </div>
+    <div class="form-outline mb-4">
+      <label class="form-label" for="fecha_inicio">Fecha de Inicio</label>
+      <input required name="fecha_inicio" [(ngModel)]="educacionDto.fecha_inicio" class="form-control" type="date" id="fecha_inicio" class="form-control" placeholder="dd-mm-yyyy" value=""
+      min="1997-01-01" max="2030-12-31" ngModel>
+    </div>
+    <div class="form-outline mb-4 form-check">
+      <input (change)="actualidad($event)" name="actualidad" ngModel [(ngModel)]="educacionDto.actualidad" id="actualidad" class="form-check-input" type="checkbox"[checked]="false" id="actualidad">
+      <label class="form-check-label" for="actualidad">Actualidad</label>
+    </div>
+    <div class="form-outline mb-4">
+      <label class="form-label" for="fecha_final">Fecha de Finalizacion</label>
+      <input [disabled]="educacionDto.actualidad" name="fecha_final" [(ngModel)]="educacionDto.fecha_final" type="date" id="fecha_final" class="form-control" placeholder="dd-mm-yyyy" value=""
+      min="1997-01-01" max="2030-12-31" ngModel>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-outline-success" (click)="modal.close('Save click')">Agregar</button>
+  </div>
+</form>
+</ng-template>
+
+<app-education (deleteEducation)="eliminarEducacion($event)" [education]="education" *ngFor="let education of educationData"></app-education>

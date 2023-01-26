@@ -1,9 +1,15 @@
 <div class="experience">
-  <img src="{{education.imagen}}" alt="education image" class="experience__image">
+
+  <div>
+    <img src="{{education.imagen}}" alt="education image" class="experience__image">
   <div class="experience__info">
     <h5 class="experience__job">{{education.titulo}}</h5>
     <p class="experience__time">{{education.fecha_inicio | date:'MMMM y' | titlecase}} - {{education.fecha_final | date:'MMMM y' | titlecase}}</p>
     <h6 class="experience__job" >{{education.institucion}}</h6>
+  </div>
+  </div>
+  <div class="col d-flex flex-row-reverse gap-2 mb-2">
+    <button class="btn btn-sm btn-outline-danger btn--edit" (click)="eliminarExperiencia()"><i class="fa-solid fa-trash"></i></button>
   </div>
 </div>
 

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IEducation } from '../../../interfaces/IEducation.interface';
 
 @Component({
@@ -9,9 +9,14 @@ import { IEducation } from '../../../interfaces/IEducation.interface';
 export class EducationComponent implements OnInit {
 
   @Input() education!:IEducation;
+  @Output() deleteEducation = new EventEmitter<number>();
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  eliminarExperiencia(){
+    this.deleteEducation.emit(this.education.id);
   }
 
 }
