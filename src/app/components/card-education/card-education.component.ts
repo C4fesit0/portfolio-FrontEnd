@@ -29,6 +29,8 @@ export class CardEducationComponent implements OnInit {
   id_nivel_estudio:0,
   }
 
+  archivo!:File;
+
   constructor(private educationService:EducationService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
@@ -45,7 +47,18 @@ export class CardEducationComponent implements OnInit {
 
   agregarEducacion(data: NgForm){
     console.log(data.value);
+    console.log(this.educacionDto);
+    this.educationService.createEducation(this.educacionDto).subscribe((education)=>{
+      if(this.archivo){
+        this.educationService.uploadImage(this.archivo,education.id).subscribe((e)=>{
+          console.log('Imagen Cargada');
+          console.log(e);
+        })
+      }else{
+        this.educationData.push(education);
+      }
 
+    })
     this.resetEducacionDto();
   }
 
@@ -59,7 +72,8 @@ export class CardEducationComponent implements OnInit {
   }
 
   cargarImagen(data:any){
-    console.log(data.target.file[0])
+    console.log(data.target.files[0])
+    this.archivo = data.target.files[0];
   }
 
   actualidad(data: any){

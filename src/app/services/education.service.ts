@@ -27,6 +27,10 @@ export class EducationService {
     return this.http.delete<any>(this.endPoint+'eliminar/'+id);
   }
 
-
+  uploadImage(file:File,id:number):Observable<any>{
+    let data = new FormData();
+    data.append('file',file);
+    return this.http.post<any>(this.endPoint+'upload/'+id,data);
+  }
 
 }
