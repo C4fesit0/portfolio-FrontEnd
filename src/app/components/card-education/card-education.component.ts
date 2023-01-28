@@ -42,24 +42,25 @@ export class CardEducationComponent implements OnInit {
 
   public open(modal: any): void {
     this.modalService.open(modal);
-    this.resetEducacionDto();
   }
 
-  agregarEducacion(data: NgForm){
+  agregarEducacion(data: any){
     console.log(data.value);
+    this.setEducationDtoData(data.value);
+    console.log('EDUCACION DTO');
     console.log(this.educacionDto);
-    this.educationService.createEducation(this.educacionDto).subscribe((education)=>{
-      if(this.archivo){
+   this.educationService.createEducation(this.educacionDto).subscribe((education)=>{
+       if(this.archivo){
         this.educationService.uploadImage(this.archivo,education.id).subscribe((e)=>{
           console.log('Imagen Cargada');
           console.log(e);
+          this.educationData.push(education);
         })
       }else{
         this.educationData.push(education);
-      }
-
+       }
     })
-    this.resetEducacionDto();
+    this.resetEducationDto();
   }
 
   eliminarEducacion(data:any){
@@ -77,25 +78,34 @@ export class CardEducationComponent implements OnInit {
   }
 
   actualidad(data: any){
-    console.log(data.target)
-
+    console.log(data.target.checked)
+    this.educacionDto.actualidad = data.target.checked;
   }
 
   nivelEstudio(data:any){
     console.log(data.target.value);
   }
 
-  resetEducacionDto(){
-    this.educacionDto = {
-      id_persona:1,
-      titulo:'',
-      fecha_inicio:'',
-      fecha_final:'',
-      actualidad:false,
-      institucion:'',
-      imagen:'',
-      id_nivel_estudio:0,
-      }
+  setEducationDtoData(data:any){
+    this.educacionDto.actualidad = data.actualidad;
+    this.educacionDto.fecha_inicio = data.fecha_inicio;
+    this.educacionDto.fecha_final = data.fecha_final;
+    this.educacionDto.id_nivel_estudio = data.nivel_estudio;
+    this.educacionDto.institucion = data.institucion;
+    this.educacionDto.titulo =data.titulo;
+  }
+
+  resetEducationDto(){
+  this.educacionDto = {
+  id_persona:1,
+  titulo:'',
+  fecha_inicio:'',
+  fecha_final:'',
+  actualidad:false,
+  institucion:'',
+  imagen:'',
+  id_nivel_estudio:0,
+  }
   }
 
 }
