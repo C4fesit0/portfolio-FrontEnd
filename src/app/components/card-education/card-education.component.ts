@@ -46,19 +46,15 @@ export class CardEducationComponent implements OnInit {
 
   agregarEducacion(data: any){
     console.log(data.value);
-    this.setEducationDtoData(data.value);
+    //this.setEducationDtoData(data.value);
     console.log('EDUCACION DTO');
     console.log(this.educacionDto);
+    console.log(this.archivo);
    this.educationService.createEducation(this.educacionDto).subscribe((education)=>{
-       if(this.archivo){
         this.educationService.uploadImage(this.archivo,education.id).subscribe((e)=>{
-          console.log('Imagen Cargada');
           console.log(e);
           this.educationData.push(education);
         })
-      }else{
-        this.educationData.push(education);
-       }
     })
     this.resetEducationDto();
   }
@@ -73,7 +69,6 @@ export class CardEducationComponent implements OnInit {
   }
 
   cargarImagen(data:any){
-    console.log(data.target.files[0])
     this.archivo = data.target.files[0];
   }
 
@@ -86,14 +81,15 @@ export class CardEducationComponent implements OnInit {
     console.log(data.target.value);
   }
 
-  setEducationDtoData(data:any){
+/*   setEducationDtoData(data:any){
     this.educacionDto.actualidad = data.actualidad;
     this.educacionDto.fecha_inicio = data.fecha_inicio;
     this.educacionDto.fecha_final = data.fecha_final;
     this.educacionDto.id_nivel_estudio = data.nivel_estudio;
     this.educacionDto.institucion = data.institucion;
     this.educacionDto.titulo =data.titulo;
-  }
+    this.educacionDto.imagen = data.imagen;
+  } */
 
   resetEducationDto(){
   this.educacionDto = {
@@ -106,6 +102,7 @@ export class CardEducationComponent implements OnInit {
   imagen:'',
   id_nivel_estudio:0,
   }
+
   }
 
 }

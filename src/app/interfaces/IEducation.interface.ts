@@ -6,4 +6,10 @@ export interface IEducation {
   actualidad: boolean;
   institucion: string;
   imagen: string;
+  nivel :Nivel;
+}
+
+interface Nivel{
+  id:number;
+  nombre:string;
 }
