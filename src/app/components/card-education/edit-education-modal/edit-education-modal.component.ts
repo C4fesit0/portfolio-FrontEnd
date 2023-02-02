@@ -27,12 +27,13 @@ export class EditEducationModalComponent implements OnInit {
     console.log(data.value);
     console.log(this.educacion)
     this.updateEducation.emit(this.educacion);
+    this.updateImage.emit(this.imagen)
   }
 
 
 
   cargarImagen(data:any){
-    console.log(data.target.files[0]);
+    this.imagen = data.target.files[0]
   }
 
   actualidad(data:any){

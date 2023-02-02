@@ -33,4 +33,8 @@ export class EducationService {
     return this.http.post<any>(this.endPoint+'upload/'+id,data);
   }
 
+  updateEducation(body:IEducationDto,eduaction_id:number):Observable<IEducation>{
+    return this.http.put<IEducation>(this.endPoint+'actualizar/'+eduaction_id,body);
+  }
+
 }
