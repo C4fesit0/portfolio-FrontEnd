@@ -1,9 +1,14 @@
 <article class="card">
+  <button class="btn btn-sm btn-outline-primary btn--edit"><i class="fa-solid fa-plus icon"></i>Agregar</button>
   <h2 class="card__title">{{skills[0].rol.nombre}}</h2>
   <div class="skills">
     <div *ngFor="let technologie of skills" class="skills__item">
       <img class="skills__icon" src="{{technologie.logo}}"/>
       <p class="skills__tech">{{technologie.nombre}}</p>
+      <div class="d-flex gap-2 m-1">
+        <button class="btn btn-sm btn-outline-danger btn--edit"><i class="fa-solid fa-trash"></i></button>
+        <button class="btn btn-sm btn-outline-primary btn--edit"><i class="fa-solid fa-pen-to-square"></i></button>
+      </div>
     </div>
   </div>
 </article>
