@@ -10,6 +10,7 @@ import { EducationService } from '../../../services/education.service';
 })
 export class EducationComponent implements OnInit {
 
+  @Input() edit:boolean = false;
   @Input() education!:IEducation;
   @Output() deleteEducation = new EventEmitter<number>();
   imagen!:File;
@@ -56,9 +57,10 @@ export class EducationComponent implements OnInit {
   actualizarImagen(imagen:File){
     console.log('IMAGEN RECIBIDA')
     console.log(imagen)
-    this.imagen = imagen;
-   this.convertirArchivo(imagen);
-
+    if(imagen !== undefined){
+      this.imagen = imagen;
+      this.convertirArchivo(imagen);
+    }
   }
 
    convertirArchivo(file:File){

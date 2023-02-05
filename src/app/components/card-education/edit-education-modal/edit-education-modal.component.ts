@@ -26,6 +26,7 @@ export class EditEducationModalComponent implements OnInit {
   actualizarEducacion(data:any){
     console.log(data.value);
     console.log(this.educacion)
+    console.log(this.educacionActualizada)
     this.updateEducation.emit(this.educacion);
     this.updateImage.emit(this.imagen)
   }
