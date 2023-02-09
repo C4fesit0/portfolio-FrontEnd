@@ -12,7 +12,14 @@
   </div>
    <form (ngSubmit)="agregarSkill(skillForm)" #skillForm="ngForm" >
     <div class="modal-body">
-
+      <div class="m-2">
+        <label class="form-label">Logo</label>
+        <input (change)="saveLogo($event)" class="form-control" type="file" name="logo" id="logo">
+      </div>
+      <div class="m-2">
+        <label class="form-label">Nombre de la tecnologia</label>
+        <input class="form-control" type="text" [(ngModel)]="skillDto.nombre" name="nombre" id="nombre">
+      </div>
     </div>
     <div class="modal-footer">
       <button type="submit" class="btn btn-outline-success" (click)="modal.close('Save click')">Agregar</button>
