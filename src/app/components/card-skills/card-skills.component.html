@@ -7,14 +7,15 @@
 <!-- Modal -->
 <ng-template #demoModal let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Agregar Educacion</h4>
+    <h4 class="modal-title" id="modal-basic-title">Agregar Tecnoliga {{skills[0].rol.nombre}}</h4>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
    <form (ngSubmit)="agregarSkill(skillForm)" #skillForm="ngForm" >
     <div class="modal-body">
       <div class="m-2">
-        <label class="form-label">Logo</label>
-        <input (change)="saveLogo($event)" class="form-control" type="file" name="logo" id="logo">
+       <label class="form-label" for="logo">Logo</label>
+        <!--  <input (change)="saveLogo($event)" class="form-control" type="file" name="logo" id="logo"> -->
+        <input type="text" class="form-control" [(ngModel)]="skillDto.logo" name="logo" id="logo">
       </div>
       <div class="m-2">
         <label class="form-label">Nombre de la tecnologia</label>
