@@ -203,6 +203,12 @@ input{
   grid-template-columns: repeat(3,1fr);
 }
 
+@media (min-width: 760px){
+  .skills{
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+
 .skills__tech{
   margin: 0;
   font-size: 1rem;

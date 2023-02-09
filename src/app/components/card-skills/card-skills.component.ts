@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ISkill } from 'src/app/interfaces/ISkill.interface';
 
 @Component({
@@ -9,8 +10,16 @@ import { ISkill } from 'src/app/interfaces/ISkill.interface';
 export class CardSkillsComponent implements OnInit {
 
   @Input() skills:ISkill[]=[]
-  constructor() { }
+  constructor(private modalService: NgbModal) { }
 
   ngOnInit(): void {
+  }
+
+  public open(modal: any): void {
+    this.modalService.open(modal);
+  }
+
+  agregarSkill(data:any){
+    console.log(data);
   }
 }

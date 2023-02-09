@@ -1,6 +1,27 @@
 <article class="card">
-  <button class="btn btn-sm btn-outline-primary btn--edit"><i class="fa-solid fa-plus icon"></i>Agregar</button>
-  <h2 class="card__title">{{skills[0].rol.nombre}}</h2>
+  <div class="d-flex justify-content-between">
+    <h2 class="card__title">{{skills[0].rol.nombre}}</h2>
+    <button class="btn btn-sm btn-outline-primary btn--edit" (click)="open(demoModal)"><i class="fa-solid fa-plus icon"></i>Agregar</button>
+
+
+<!-- Modal -->
+<ng-template #demoModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Agregar Educacion</h4>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+   <form (ngSubmit)="agregarSkill(skillForm)" #skillForm="ngForm" >
+    <div class="modal-body">
+
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-outline-success" (click)="modal.close('Save click')">Agregar</button>
+    </div>
+  </form>
+  </ng-template>
+
+
+  </div>
   <div class="skills">
     <div *ngFor="let technologie of skills" class="skills__item">
       <img class="skills__icon" src="{{technologie.logo}}"/>
