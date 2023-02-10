@@ -48,6 +48,15 @@ export class CardSkillsComponent implements OnInit {
     })
   }
 
+  deleteSkill(id:number){
+    console.log(id)
+    this.skillService.deleteSkill(id).subscribe((res)=>{
+     this.skills =  this.skills.filter((skill)=>{
+        return skill.id!==res.id;
+      })
+    })
+  }
+
   saveLogo(data:any){
     console.log(data.target.files[0])
     /*this.skillDto.logo = data.target.files[0].name;

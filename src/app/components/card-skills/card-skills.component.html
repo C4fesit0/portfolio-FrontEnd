@@ -35,7 +35,7 @@
       <img class="skills__icon" src="{{technologie.logo}}"/>
       <p class="skills__tech">{{technologie.nombre}}</p>
       <div class="d-flex gap-2 m-1">
-        <button class="btn btn-sm btn-outline-danger btn--edit"><i class="fa-solid fa-trash"></i></button>
+        <button class="btn btn-sm btn-outline-danger btn--edit" (click)="deleteSkill(technologie.id)" ><i class="fa-solid fa-trash"></i></button>
         <button class="btn btn-sm btn-outline-primary btn--edit"><i class="fa-solid fa-pen-to-square"></i></button>
       </div>
     </div>
