@@ -58,7 +58,7 @@ export class MainComponent implements OnInit {
 
   }
 
-  agregarSkill(data:any){
+/*   agregarSkill(data:any){
     console.log("MAIN COMPONENT")
     console.log(data);
     this.skillService.createSkill(data).subscribe((res)=>{
@@ -68,6 +68,6 @@ export class MainComponent implements OnInit {
         this.skillsFront.push(res);
       }
     })
-  }
+  } */
 
 }

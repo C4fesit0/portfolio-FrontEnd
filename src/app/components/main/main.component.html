@@ -6,8 +6,8 @@
     <app-card-education [edit]="this.userService.usuarioLogeado" ></app-card-education>
   </section>
  <section class="column column--right">
-    <app-card-skills (addSkill)="agregarSkill($event)" [skills]="skillsFront"></app-card-skills>
-    <app-card-skills (addSkill)="agregarSkill($event)" [skills]="skillsBack"></app-card-skills>
+    <app-card-skills  [skills]="skillsFront"></app-card-skills>
+    <app-card-skills  [skills]="skillsBack"></app-card-skills>
    <app-card-project  [project]="project" *ngFor="let project of projects"></app-card-project>
   </section>
 </main>

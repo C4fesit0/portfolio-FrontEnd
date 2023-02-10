@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ISkill } from 'src/app/interfaces/ISkill.interface';
 import { ISkillDto } from 'src/app/interfaces/ISkillDto.interface';
+import { SkillService } from '../../services/skill.service';
 
 @Component({
   selector: 'app-card-skills',
@@ -21,7 +22,7 @@ export class CardSkillsComponent implements OnInit {
     rol:0
   };
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal,private skillService:SkillService) { }
 
   ngOnInit(): void {
 
@@ -31,12 +32,20 @@ export class CardSkillsComponent implements OnInit {
     this.modalService.open(modal);
   }
 
-  agregarSkill(data:any){
+  /* agregarSkill(data:any){
     this.skillDto.rol = this.skills[0].rol.id
     console.log(data.value);
     console.log(this.skillDto)
     this.addSkill.emit(this.skillDto);
     this.resetDto();
+  } */
+
+  agregarSkill(data:any){
+    this.skillDto.rol = this.skills[0].rol.id
+    console.log(data);
+    this.skillService.createSkill(this.skillDto).subscribe((res)=>{
+      this.skills.push(res);
+    })
   }
 
   saveLogo(data:any){
