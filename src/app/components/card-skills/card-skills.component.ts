@@ -32,13 +32,6 @@ export class CardSkillsComponent implements OnInit {
     this.modalService.open(modal);
   }
 
-  /* agregarSkill(data:any){
-    this.skillDto.rol = this.skills[0].rol.id
-    console.log(data.value);
-    console.log(this.skillDto)
-    this.addSkill.emit(this.skillDto);
-    this.resetDto();
-  } */
 
   agregarSkill(data:any){
     this.skillDto.rol = this.skills[0].rol.id
