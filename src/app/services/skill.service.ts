@@ -26,4 +26,8 @@ export class SkillService {
     return this.http.delete(this.endPoint+'eliminar/'+id);
   }
 
+  updateSkill(id:number,skill:ISkillDto):Observable<any>{
+    return this.http.put(this.endPoint+'actualizar/'+id,skill);
+  }
+
 }

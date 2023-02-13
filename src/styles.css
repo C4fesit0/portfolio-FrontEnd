@@ -200,12 +200,21 @@ input{
 .skills{
   padding: 1em 0;
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(2,1fr);
+  gap:1em;
 }
 
 @media (min-width: 760px){
   .skills{
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(3,1fr);
+    gap:0px;
+  }
+}
+
+@media (min-width: 1360px){
+  .skills{
+    grid-template-columns: repeat(4,1fr);
+    gap:0px;
   }
 }
 
@@ -221,9 +230,17 @@ input{
   align-items: center;
 }
 
+.skills__container{
+  display: flex;
+  width: 100px;
+  height: 90px;
+  align-items: center;
+}
+
 .skills__icon{
-  margin: auto;
-  margin-bottom: 0.em;
+  margin: auto auto;
+  max-height: 90px;
+  max-width: 100px;
 }
 
 

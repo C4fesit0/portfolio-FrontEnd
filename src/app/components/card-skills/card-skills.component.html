@@ -27,17 +27,9 @@
     </div>
   </form>
   </ng-template>
-
-
   </div>
+
   <div class="skills">
-    <div *ngFor="let technologie of skills" class="skills__item">
-      <img class="skills__icon" src="{{technologie.logo}}"/>
-      <p class="skills__tech">{{technologie.nombre}}</p>
-      <div class="d-flex gap-2 m-1">
-        <button class="btn btn-sm btn-outline-danger btn--edit" (click)="deleteSkill(technologie.id)" ><i class="fa-solid fa-trash"></i></button>
-       <app-edit-skill [skill]="technologie"></app-edit-skill>
-      </div>
-    </div>
+    <app-skill (deleteEvent)="deleteSkill($event)" ngClass="skills__item" *ngFor="let technologie of skills" [skill]="technologie"></app-skill>
   </div>
 </article>
