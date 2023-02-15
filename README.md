@@ -1,4 +1,4 @@
-# PortfolioFrontend
+# Portfolio Frontend
 Hola, este es el frontend de mi portfolio. El maquetado se encuentra [aca](https://github.com/C4fesit0/portfolio-maquetado).
 Este proyecto es parte del curso de Argentina Programa.
 
