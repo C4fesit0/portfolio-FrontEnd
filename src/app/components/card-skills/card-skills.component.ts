@@ -56,22 +56,7 @@ export class CardSkillsComponent implements OnInit {
      this.logo = data.target.files[0]; */
   }
 
-  actualizarSkill(data:ISkill){
-  //  console.log('CARD SKILL COMPONENT')
-  //  console.log(data);
 
-    this.skillDto.logo = data.logo;
-    this.skillDto.nombre = data.nombre;
-    this.skillDto.rol = data.rol.id;
-
-    this.skillService.updateSkill(data.id,this.skillDto).subscribe((res)=>{
-      console.log(res);
-     let index = this.skills.findIndex((e)=>{
-        e.id == res.id
-      });
-      this.skills[index] = res;
-    })
-  }
 
   resetDto(){
     this.skillDto = {

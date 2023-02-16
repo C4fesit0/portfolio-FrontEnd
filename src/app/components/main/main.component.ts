@@ -1,8 +1,6 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
-import { IProject } from 'src/app/interfaces/IProject.interface';
 import { ISkill } from 'src/app/interfaces/ISkill.interface';
 import { SkillService } from '../../services/skill.service';
-import { ProjectService } from '../../services/project.service';
 import { UserService } from '../../services/user.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -17,7 +15,6 @@ export class MainComponent implements OnInit {
 
   @Output() usuarioLogeado:boolean = false;
 
-  projects:IProject[] = [];
   skillsFront:ISkill[] = [];
   skillsBack:ISkill[]=[];
 
@@ -27,8 +24,7 @@ export class MainComponent implements OnInit {
     class:'btn-primary'
   }
 
-  constructor(private skillService:SkillService,
-    private projectService:ProjectService, public userService:UserService, private route: ActivatedRoute) { }
+  constructor(private skillService:SkillService, public userService:UserService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
      //Skills
@@ -47,12 +43,6 @@ export class MainComponent implements OnInit {
       //console.log(this.skillsBack);
 
    });
-
-   //Projects
-   this.projectService.getProjects().subscribe((projects)=>{
-     //console.log(projects);
-     this.projects = projects;
-   })
 
    this.usuarioLogeado=this.userService.usuarioLogeado;
 

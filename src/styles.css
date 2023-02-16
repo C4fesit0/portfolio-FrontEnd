@@ -147,8 +147,10 @@ input{
       grid-template-columns: repeat(2,1fr);
       grid-template-rows: repeat(10,min-content);
   }
+  .column--right__button{
+    grid-column: 1/3;
+  }
 }
-
 .card{
   padding: 1em;
   background-color: var(--bg-card-color);
@@ -355,4 +357,14 @@ input{
 
 .btn--edit{
   height: 35px;
+}
+
+.btn--edit--project{
+  width: 100px;
+}
+
+@media (min-width: 760px){
+  .btn--edit--project{
+    width: 200px;
+  }
 }

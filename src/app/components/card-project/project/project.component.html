@@ -1,0 +1,12 @@
+<div class="card__image-container">
+  <img src="{{project.image}}" alt="project image" class="card__image"/>
+</div>
+<div class="project">
+  <app-project-tag [tecnologias]="project.tecnologias"></app-project-tag>
+  <h2 class="card__title">{{project.nombre}}</h2>
+  <p class="card__text">{{project.descripcion}}</p>
+    <div class="buttons">
+      <a href="{{project.demo}}" target="_blank" class="button button--primary">Demo</a>
+      <a href="{{project.repositorio}}" target="_blank" class="button button--ghost">Code</a>
+    </div>
+</div>

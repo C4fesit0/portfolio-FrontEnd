@@ -28,6 +28,7 @@ import { EditModalComponent } from './components/card-experience/edit-modal/edit
 import { EditEducationModalComponent } from './components/card-education/edit-education-modal/edit-education-modal.component';
 import { EditSkillComponent } from './components/card-skills/edit-skill/edit-skill.component';
 import { SkillComponent } from './components/card-skills/skill/skill.component';
+import { ProjectComponent } from './components/card-project/project/project.component';
 registerLocaleData(localeEs, "es");
 
 @NgModule({
@@ -48,7 +49,8 @@ registerLocaleData(localeEs, "es");
     EditModalComponent,
     EditEducationModalComponent,
     EditSkillComponent,
-    SkillComponent
+    SkillComponent,
+    ProjectComponent,
   ],
   imports: [
     BrowserModule,

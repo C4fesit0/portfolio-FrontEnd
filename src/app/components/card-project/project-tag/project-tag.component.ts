@@ -17,6 +17,7 @@ export class ProjectTagComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }
