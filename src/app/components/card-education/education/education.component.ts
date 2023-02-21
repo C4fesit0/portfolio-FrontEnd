@@ -13,8 +13,8 @@ export class EducationComponent implements OnInit {
   @Input() edit:boolean = false;
   @Input() education!:IEducation;
   @Output() deleteEducation = new EventEmitter<number>();
-  imagen!:File;
-  imagenConvertida!:string | undefined;
+  archivo!:File;
+  imagen!:string | undefined;
   educacionDto:IEducationDto= {
     id_persona:1,
     titulo:'',
@@ -43,24 +43,22 @@ export class EducationComponent implements OnInit {
     console.log('--------------------------');
     this.setEducacionDto(data);
     this.eduacionService.updateEducation(this.educacionDto,data.id).subscribe((res)=>{
-      if(this.imagenConvertida){
-        this.eduacionService.uploadImage(this.imagen,data.id).subscribe((resI)=>{
+      if(this.archivo){
+        this.eduacionService.uploadImage(this.archivo,data.id).subscribe((resI)=>{
+          this.convertirArchivo(this.archivo);
           console.log(res);
           console.log(resI);
+          this.education = res
         })
       }else{
-        console.log(res);
+        this.education = res
       }
     })
   }
 
   actualizarImagen(imagen:File){
-    console.log('IMAGEN RECIBIDA')
     console.log(imagen)
-    if(imagen !== undefined){
-      this.imagen = imagen;
-      this.convertirArchivo(imagen);
-    }
+      this.archivo = imagen;
   }
 
    convertirArchivo(file:File){
@@ -68,7 +66,7 @@ export class EducationComponent implements OnInit {
     reader.readAsDataURL(file);
     reader.onload = () => {
         console.log(reader.result);
-        this.imagenConvertida = reader.result?.toString();
+        this.imagen = reader.result?.toString();
       };
   }
 
@@ -77,7 +75,7 @@ export class EducationComponent implements OnInit {
     this.educacionDto.fecha_final=data.fecha_final;
     this.educacionDto.fecha_inicio=data.fecha_inicio;
     this.educacionDto.id_nivel_estudio=data.nivel.id
-    this.educacionDto.imagen='';
+    this.educacionDto.imagen=this.education.imagen;
     this.educacionDto.id_persona=1;
     this.educacionDto.institucion=data.institucion;
     this.educacionDto.titulo=data.titulo;

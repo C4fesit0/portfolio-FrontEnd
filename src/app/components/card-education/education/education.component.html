@@ -1,8 +1,8 @@
 <div class="experience">
 
   <div>
-    <img *ngIf="imagenConvertida" src="{{imagenConvertida}}" alt="education image" class="experience__image">
-    <img *ngIf="!imagenConvertida" src="http://localhost:8080/educacion/image/{{education.id}}" alt="education image" class="experience__image">
+    <img *ngIf="imagen" src="{{imagen}}" alt="education image" class="experience__image">
+    <img *ngIf="!imagen" src="http://localhost:8080/educacion/image/{{education.id}}" alt="education image" class="experience__image">
   <div class="experience__info">
     <h5 class="experience__job">{{education.titulo}}</h5>
     <p class="experience__time">{{education.fecha_inicio | date:'MMMM y' | titlecase}} - {{education.fecha_final == null? 'Actualidad':(education.fecha_final | date:'MMMM y' | titlecase)}}</p>

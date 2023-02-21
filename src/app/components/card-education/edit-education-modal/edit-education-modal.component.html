@@ -6,7 +6,7 @@
     <h4 class="modal-title" id="modal-basic-title">Actualizar Educacion</h4>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
-   <form (ngSubmit)="actualizarEducacion(educacionForm)" #educacionForm="ngForm" >
+   <form  #educacionForm="ngForm" >
     <div class="modal-body">
       <div class="form-outline mb-4">
         <label for="imagen" class="form-label">Logo</label>
@@ -18,7 +18,7 @@
       </div>
       <div class="form-outline mb-4">
         <label class="form-label" for="institucion">Institucion</label>
-        <input required  name="institucion" [(ngModel)]="educacion.institucion" type="text" ngModel id="institucion" class="form-control">
+        <input required  name="institucion" [ngModel]="educacion.institucion" type="text" ngModel id="institucion" class="form-control">
       </div>
       <div class="form-outline mb-4">
         <label class="form-label" for="nivel estudio">Nivel de Estudio</label>
@@ -30,21 +30,21 @@
       </div>
       <div class="form-outline mb-4">
         <label class="form-label" for="fecha_inicio">Fecha de Inicio</label>
-        <input required name="fecha_inicio" [(ngModel)]="educacion.fecha_inicio" class="form-control" type="date" id="fecha_inicio" class="form-control" placeholder="dd-mm-yyyy" value=""
+        <input required name="fecha_inicio" [ngModel]="educacion.fecha_inicio" class="form-control" type="date" id="fecha_inicio" class="form-control" placeholder="dd-mm-yyyy" value=""
         min="1997-01-01" max="2030-12-31" ngModel>
       </div>
       <div class="form-outline mb-4 form-check">
-        <input (change)="actualidad($event)" name="actualidad" ngModel [(ngModel)]="educacion.actualidad" id="actualidad" class="form-check-input" type="checkbox"[checked]="false" id="actualidad">
+        <input (change)="actualidad($event)" name="actualidad" ngModel [ngModel]="educacion.actualidad" id="actualidad" class="form-check-input" type="checkbox"[checked]="false" id="actualidad">
         <label class="form-check-label" for="actualidad">Actualidad</label>
       </div>
       <div class="form-outline mb-4">
         <label class="form-label" for="fecha_final">Fecha de Finalizacion</label>
-        <input [disabled]="educacion.actualidad" name="fecha_final" [(ngModel)]="educacion.fecha_final" type="date" id="fecha_final" class="form-control" placeholder="dd-mm-yyyy" value=""
+        <input [disabled]="educacion.actualidad" name="fecha_final" [ngModel]="educacion.fecha_final" type="date" id="fecha_final" class="form-control" placeholder="dd-mm-yyyy" value=""
         min="1997-01-01" max="2030-12-31" ngModel>
       </div>
     </div>
     <div class="modal-footer">
-      <button type="submit" class="btn btn-outline-success" (click)="modal.close('Save click')">Agregar</button>
+      <button type="submit" class="btn btn-outline-success" (click)="[actualizarEducacion(educacionForm),modal.close('Save click')]">Agregar</button>
     </div>
   </form>
   </ng-template>

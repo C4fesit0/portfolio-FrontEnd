@@ -50,6 +50,7 @@ export class ExperienceComponent implements OnInit {
           this.experienceService.uploadImage(this.archivo,experiencia.id).subscribe((e)=>{
             //console.log('SE SUBIO LA IMAGEN');
             this.experience = e;
+            this.convertirArchivo(this.archivo);
           })
         }else{
           //console.log('no hay imagen');
@@ -62,7 +63,6 @@ export class ExperienceComponent implements OnInit {
     //console.log('CARD-EXP')
     //console.log(image);
     this.archivo = image;
-   this.convertirArchivo(image);
   }
 
 

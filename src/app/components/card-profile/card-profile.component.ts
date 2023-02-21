@@ -53,7 +53,9 @@ export class CardProfileComponent implements OnInit {
   }
 
   actualizarPerfil(data: NgForm):void{
+
     console.log("Perfil Actualizado: ");
+
     this.profileDto.nombre=data.value.nombre;
     this.profileDto.telefono=data.value.telefono;
     this.profileDto.email=data.value.email;
@@ -66,13 +68,20 @@ export class CardProfileComponent implements OnInit {
       this.profileDto.foto_perfil=this.archivo.name;
       this.profileService.subirFoto(this.archivo,this.profile.id).subscribe(e =>{
         console.log(e);
+        this.convertirArchivo(this.archivo);
       })
     }else{
       this.profileDto.foto_perfil = this.profile.foto_perfil
     }
 
     this.profileService.actualizarPerfil(this.profileDto).subscribe(e =>{
-      console.log(e);
+
+      if(e == 'ERROR'){
+        console.error('No se pudo actualizar');
+        console.log(e);
+        return
+      }
+      this.profile = e;
     });
 
   }
@@ -80,7 +89,6 @@ export class CardProfileComponent implements OnInit {
   cargaImagen(event:any){
     this.archivo = event.target.files[0];
     //console.log(this.archivo);
-    this.convertirArchivo(this.archivo);
   }
 
   convertirArchivo(file:File) {

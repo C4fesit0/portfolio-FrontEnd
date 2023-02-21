@@ -6,7 +6,7 @@
   <h2 class="card__title">{{project.nombre}}</h2>
   <p class="card__text">{{project.descripcion}}</p>
     <div class="buttons">
-      <a href="{{project.demo}}" target="_blank" class="button button--primary">Demo</a>
-      <a href="{{project.repositorio}}" target="_blank" class="button button--ghost">Code</a>
+      <a *ngIf="project.demo !==''" href="{{project.demo}}" target="_blank" class="button button--primary">Demo</a>
+      <a *ngIf="project.repositorio!==''" href="{{project.repositorio}}" target="_blank" class="button button--ghost">Code</a>
     </div>
 </div>

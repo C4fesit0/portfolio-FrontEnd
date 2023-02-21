@@ -12,7 +12,7 @@
   <h4 class="modal-title" id="modal-basic-title">Agregar Experiencia Laboral</h4>
   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 </div>
-<form (ngSubmit)="agregarExperiencia(experienciaForm)" #experienciaForm="ngForm" >
+<form #experienciaForm="ngForm" >
   <div class="modal-body">
     <div class="form-outline mb-4">
       <label for="imagen" class="form-label">Logo</label>
@@ -46,7 +46,7 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button type="submit" class="btn btn-outline-success" (click)="modal.close('Save click')">Actualizar</button>
+    <button type="submit" class="btn btn-outline-success" (click)="[agregarExperiencia(experienciaForm),modal.close('Save click')]">Actualizar</button>
   </div>
 </form>
 </ng-template>

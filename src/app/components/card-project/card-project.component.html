@@ -16,16 +16,22 @@
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <form (ngSubmit)="agregarProyecto(proyectoForm)" #proyectoForm="ngForm" >
-    <div class="modal-body">
+      <div class="modal-body">
         <div class="mb-3">
           <label for="formFile" class="form-label">Foto de Perfil</label>
           <input (change)="cargaImagen($event)" name="foto_perfil" ngModel class="form-control" type="file" id="foto_perfil">
         </div>
-
-    </div>
-    <div class="modal-footer">
-      <button type="submit" class="btn btn-outline-success" (click)="modal.close('Save click')">Actualizar</button>
-    </div>
-  </form>
-
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre del Proyecto</label>
+          <input name="nombre" ngModel class="form-control" type="file" id="foto_perfil">
+        </div>
+        <div class="mb-3">
+          <label for="formFile" class="form-label">Foto de Perfil</label>
+          <input (change)="cargaImagen($event)" name="foto_perfil" ngModel class="form-control" type="file" id="foto_perfil">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-success" (click)="modal.close('Save click')">Actualizar</button>
+      </div>
+    </form>
   </ng-template>

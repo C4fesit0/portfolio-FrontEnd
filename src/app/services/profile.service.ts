@@ -23,7 +23,7 @@ export class ProfileService {
     return this.http.get<any>(this.endPoint+"image/"+id);
    }
 
-   actualizarPerfil(data:IProfileDto):Observable<string>{
+   actualizarPerfil(data:IProfileDto):Observable<any>{
     console.log("Profile Service ------- PUT");
     console.log(data);
     return this.http.put<string>(this.endPoint+"actualizar",data);

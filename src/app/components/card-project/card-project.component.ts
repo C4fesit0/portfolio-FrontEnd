@@ -20,7 +20,7 @@ export class CardProjectComponent implements OnInit {
   ngOnInit(): void {
     //Projects
    this.projectService.getProjects().subscribe((projects)=>{
-    //console.log(projects);
+   /*  console.log(projects); */
     this.projects = projects;
   })
   }
