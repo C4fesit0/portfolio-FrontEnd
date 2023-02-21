@@ -28,7 +28,7 @@ export class ExperienceComponent implements OnInit {
   image!:string | undefined;
 
   archivo!:File;
-
+  existeArchivo:boolean =false;
   constructor(private experienceService:ExperienceService) { }
 
   ngOnInit(): void {
@@ -45,12 +45,13 @@ export class ExperienceComponent implements OnInit {
     this.setExperienceDto(experiencia);
 
     this.experienceService.updateExperience(experiencia.id,this.experienceDto).subscribe((e)=>{
-        if(this.archivo){
+        if(this.existeArchivo){
           //console.log('hay imagen');
           this.experienceService.uploadImage(this.archivo,experiencia.id).subscribe((e)=>{
             //console.log('SE SUBIO LA IMAGEN');
             this.experience = e;
             this.convertirArchivo(this.archivo);
+            this.existeArchivo = false;
           })
         }else{
           //console.log('no hay imagen');
@@ -62,6 +63,7 @@ export class ExperienceComponent implements OnInit {
   actualizarImagen(image:File){
     console.log('CARD-EXP')
     console.log(image);
+    this.existeArchivo = true;
     this.archivo = image;
   }
 
@@ -70,7 +72,7 @@ export class ExperienceComponent implements OnInit {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-        console.log(reader.result);
+        //console.log(reader.result);
         this.image =reader.result?.toString();
     };
   }
@@ -82,7 +84,7 @@ export class ExperienceComponent implements OnInit {
     this.experienceDto.descripcion = experiencia.descripcion;
     this.experienceDto.fecha_inicio = experiencia.fecha_inicio;
     this.experienceDto.fecha_final = experiencia.fecha_final;
-    this.experienceDto.imagen =this.image?this.image:'';
+    this.experienceDto.imagen =this.experience.imagen;
   }
 
 }

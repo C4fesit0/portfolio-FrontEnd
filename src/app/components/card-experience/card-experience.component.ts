@@ -39,7 +39,8 @@ export class CardExperienceComponent implements OnInit {
   ngOnInit(): void {
     this.experienceService.getExperienceData().subscribe((experiences=>{
       this.experiences = experiences;
-      //console.log(this.experiences)
+      console.log('Exp API==>')
+      console.log(this.experiences)
     }))
 
   }
