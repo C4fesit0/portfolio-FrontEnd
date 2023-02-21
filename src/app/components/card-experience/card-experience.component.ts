@@ -17,7 +17,7 @@ export class CardExperienceComponent implements OnInit {
 
   @Input() edit:boolean =true;
   archivo!:File;
-
+  existeArchivo:boolean = false;
   experiences:IExperience[]= [];
 
   experienceDto:IExperienceDto = {
@@ -31,10 +31,8 @@ export class CardExperienceComponent implements OnInit {
     imagen: ''
   }
 
-
   constructor(private experienceService:ExperienceService, private modalService: NgbModal) {
-
-   }
+  }
 
   ngOnInit(): void {
     this.experienceService.getExperienceData().subscribe((experiences=>{
@@ -50,6 +48,7 @@ export class CardExperienceComponent implements OnInit {
   }
 
   cargaImagen(event:any){
+    this.existeArchivo = true;
     this.archivo = event.target.files[0];
     //console.log(this.archivo);
   }
@@ -61,18 +60,19 @@ export class CardExperienceComponent implements OnInit {
     //console.log(this.experienceDto);
 
     this.experienceService.createExperience(this.experienceDto).subscribe((e)=>{
-      this.experienceService.uploadImage(this.archivo,e.id).subscribe((e)=>{
-        console.log(e);
-        if(e.id){
-          this.experiences.push(e);
-        }else{
+      if(this.existeArchivo){
+        this.experienceService.uploadImage(this.archivo,e.id).subscribe((e)=>{
+          this.existeArchivo = false;
           console.log(e);
-        }
-      })
+        })
+      }
+      if(e.id){
+        this.experiences.push(e);
+      }else{
+        console.log(e);
+      }
     });
-
     this.resetExperienceDto();
-
   }
 
 
@@ -94,37 +94,7 @@ export class CardExperienceComponent implements OnInit {
       })
     }
   }
-/*
-  actualizarExperiencia(experiencia:IExperience){
-    console.log(experiencia);
-    console.log('CARD EXPERIENCE');
-    this.setExperienceDto(experiencia);
 
-    this.experienceService.updateExperience(experiencia.id,this.experienceDto).subscribe((e)=>{
-      console.log(this.archivo);
-      if(this.archivo){
-        this.experienceService.uploadImage(this.archivo,experiencia.id).subscribe((e)=>{
-          console.log('SE SUBIO LA IMAGEN');
-
-          let index = this.experiences.findIndex((exp)=>exp.id == e.id)
-          this.experiences[index] = e;
-          console.log(this.experiences[index]);
-          console.log(e);
-        })
-      }else{
-        console.log('NO SE SUBE IMAGEN');
-        let index = this.experiences.findIndex((exp)=>exp.id == e.id)
-        this.experiences[index] = e;
-      }
-
-    })
-  }
-
-  actualizarImagen(image:File){
-    console.log('CARD-EXP')
-    console.log(image);
-   this.archivo = image;
-  } */
 
  /*  setExperienceDto(experiencia:IExperience){
     this.experienceDto.puesto = experiencia.puesto;
