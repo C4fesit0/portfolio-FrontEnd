@@ -38,7 +38,7 @@ export class CardProfileComponent implements OnInit {
   foto_perfil!:string | undefined;
 
   archivo!:File;
-
+  existeArchivo:boolean = false;
   constructor(private profileService:ProfileService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
@@ -64,15 +64,16 @@ export class CardProfileComponent implements OnInit {
 
     console.log(this.profileDto);
 
-    if(this.archivo){
+    if(this.existeArchivo){
       this.profileDto.foto_perfil=this.archivo.name;
       this.profileService.subirFoto(this.archivo,this.profile.id).subscribe(e =>{
-        console.log(e);
+        //console.log(e);
         this.convertirArchivo(this.archivo);
       })
     }else{
       this.profileDto.foto_perfil = this.profile.foto_perfil
     }
+
 
     this.profileService.actualizarPerfil(this.profileDto).subscribe(e =>{
 
@@ -82,11 +83,13 @@ export class CardProfileComponent implements OnInit {
         return
       }
       this.profile = e;
+
     });
 
   }
 
   cargaImagen(event:any){
+    this.existeArchivo = true;
     this.archivo = event.target.files[0];
     //console.log(this.archivo);
   }
