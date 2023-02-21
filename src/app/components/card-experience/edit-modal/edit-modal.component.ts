@@ -23,6 +23,7 @@ export class EditModalComponent {
     imagen: ''
   };
   image!:File;
+  existeImagen:boolean =false;
   @Output() actualizarEvent= new EventEmitter<IExperience>();
   @Output() actualizarImageEvent= new EventEmitter<File>();
 
@@ -38,9 +39,10 @@ export class EditModalComponent {
     //console.log(data.value);
     this.setExperienciaData(data.value);
     this.actualizarEvent.emit(this.experienceUpdated);
-    if(this.image){
+    if(this.existeImagen){
       console.log('SENDING IMAGE')
       this.actualizarImageEvent.emit(this.image);
+      this.existeImagen =false;
     }
   }
 
@@ -64,6 +66,7 @@ export class EditModalComponent {
   }
 
   cargaImagen(event:any){
+    this.existeImagen =true;
     this.image = event.target.files[0];
     console.log(this.image);
   }

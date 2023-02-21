@@ -61,8 +61,7 @@ export class CardExperienceComponent implements OnInit {
 
     this.experienceService.createExperience(this.experienceDto).subscribe((e)=>{
       this.experienceService.uploadImage(this.archivo,e.id).subscribe((e)=>{
-        //console.log(e);
-        //console.log(e);
+        console.log(e);
         if(e.id){
           this.experiences.push(e);
         }else{

@@ -45,7 +45,7 @@ export class ExperienceComponent implements OnInit {
     this.setExperienceDto(experiencia);
 
     this.experienceService.updateExperience(experiencia.id,this.experienceDto).subscribe((e)=>{
-        if(this.image){
+        if(this.archivo){
           //console.log('hay imagen');
           this.experienceService.uploadImage(this.archivo,experiencia.id).subscribe((e)=>{
             //console.log('SE SUBIO LA IMAGEN');
@@ -60,8 +60,8 @@ export class ExperienceComponent implements OnInit {
   }
 
   actualizarImagen(image:File){
-    //console.log('CARD-EXP')
-    //console.log(image);
+    console.log('CARD-EXP')
+    console.log(image);
     this.archivo = image;
   }
 
@@ -82,7 +82,7 @@ export class ExperienceComponent implements OnInit {
     this.experienceDto.descripcion = experiencia.descripcion;
     this.experienceDto.fecha_inicio = experiencia.fecha_inicio;
     this.experienceDto.fecha_final = experiencia.fecha_final;
-    this.experienceDto.imagen = experiencia.imagen;
+    this.experienceDto.imagen =this.image?this.image:'';
   }
 
 }
