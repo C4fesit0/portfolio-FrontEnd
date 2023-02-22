@@ -11,6 +11,7 @@ import { SkillService } from '../../services/skill.service';
 })
 export class CardSkillsComponent implements OnInit {
 
+  @Input() edit:boolean = false;
   @Input() skills:ISkill[]=[]
   @Output() addSkill = new EventEmitter<ISkillDto>();
   logo!:File;

@@ -9,6 +9,7 @@ import { SkillService } from '../../../services/skill.service';
   styleUrls: ['./skill.component.css'],
 })
 export class SkillComponent {
+  @Input() edit:boolean = false;
   @Input() skill!:ISkill;
   @Output() deleteEvent = new EventEmitter<number>();
   skillDto: ISkillDto = {

@@ -1,7 +1,7 @@
 <article class="card">
   <div class="d-flex justify-content-between">
     <h2 class="card__title">{{skills[0].rol.nombre}}</h2>
-    <button class="btn btn-sm btn-outline-primary btn--edit" (click)="open(demoModal)"><i class="fa-solid fa-plus icon"></i>Agregar</button>
+    <button *ngIf="edit" class="btn btn-sm btn-outline-primary btn--edit" (click)="open(demoModal)"><i class="fa-solid fa-plus icon"></i>Agregar</button>
 
 
 <!-- Modal -->
@@ -30,6 +30,6 @@
   </div>
 
   <div class="skills">
-    <app-skill (deleteEvent)="deleteSkill($event)" ngClass="skills__item" *ngFor="let technologie of skills" [skill]="technologie"></app-skill>
+    <app-skill [edit]="this.edit" (deleteEvent)="deleteSkill($event)" ngClass="skills__item" *ngFor="let technologie of skills" [skill]="technologie"></app-skill>
   </div>
 </article>
