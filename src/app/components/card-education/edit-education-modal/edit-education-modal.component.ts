@@ -38,6 +38,7 @@ export class EditEducationModalComponent implements OnInit {
   @Output() updateEducation = new EventEmitter<IEducation>();
   @Output() updateImage = new EventEmitter<File>();
   imagen!:File;
+  existeImagen:boolean = false;
 
   constructor(private modalService: NgbModal){}
 
@@ -52,7 +53,8 @@ export class EditEducationModalComponent implements OnInit {
     console.log(this.educacion)
     this.setEducacionActualizada(data.value);
     this.updateEducation.emit(this.educacionActualizada);
-    this.updateImage.emit(this.imagen)
+   if(this.existeImagen)  this.updateImage.emit(this.imagen)
+
   }
 
   setEducacionActualizada(data:any){
@@ -63,11 +65,13 @@ export class EditEducationModalComponent implements OnInit {
     this.educacionActualizada.imagen = this.educacion.imagen;
     this.educacionActualizada.fecha_inicio = data.fecha_inicio;
     this.educacionActualizada.fecha_final = data.fecha_final;
-     console.log(this.educacionActualizada);
+    this.educacionActualizada.actualidad = data.actualidad;
+    console.log(this.educacionActualizada);
   }
 
   cargarImagen(data:any){
     console.log(data.target.files[0]);
+    this.existeImagen = true;
     this.imagen = data.target.files[0]
   }
 

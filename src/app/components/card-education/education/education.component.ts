@@ -14,6 +14,7 @@ export class EducationComponent implements OnInit {
   @Input() education!:IEducation;
   @Output() deleteEducation = new EventEmitter<number>();
   archivo!:File;
+  existeArchivo:boolean=false;
   imagen!:string | undefined;
   educacionDto:IEducationDto= {
     id_persona:1,
@@ -38,12 +39,14 @@ export class EducationComponent implements OnInit {
 
   actualizarEducacion(data:IEducation){
     console.log('ACTUALIZAR EDUCACION');
+    console.log(this.existeArchivo);
     console.log(data);
-    console.log(this.imagen);
     console.log('--------------------------');
     this.setEducacionDto(data);
+    console.log(this.educacionDto)
     this.eduacionService.updateEducation(this.educacionDto,data.id).subscribe((res)=>{
-      if(this.archivo){
+
+      if(this.existeArchivo){
         this.eduacionService.uploadImage(this.archivo,data.id).subscribe((resI)=>{
           this.convertirArchivo(this.archivo);
           console.log(res);
@@ -51,14 +54,17 @@ export class EducationComponent implements OnInit {
           this.education = res
         })
       }else{
+      console.log(res);
         this.education = res
       }
+
     })
   }
 
   actualizarImagen(imagen:File){
     console.log(imagen)
-      this.archivo = imagen;
+    this.existeArchivo = true;
+    this.archivo = imagen;
   }
 
    convertirArchivo(file:File){

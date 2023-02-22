@@ -48,16 +48,4 @@ export class MainComponent implements OnInit {
 
   }
 
-/*   agregarSkill(data:any){
-    console.log("MAIN COMPONENT")
-    console.log(data);
-    this.skillService.createSkill(data).subscribe((res)=>{
-      if(res.rol.nombre == 'backend'){
-        this.skillsBack.push(res);
-      }else if(res.rol.nombre=='frontend'){
-        this.skillsFront.push(res);
-      }
-    })
-  } */
-
 }

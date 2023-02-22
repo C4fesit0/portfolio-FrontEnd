@@ -29,7 +29,7 @@ export class CardEducationComponent implements OnInit {
   }
 
   archivo!:File;
-
+  existeArchivo:boolean= false;
   constructor(private educationService:EducationService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
@@ -44,26 +44,28 @@ export class CardEducationComponent implements OnInit {
   }
 
   agregarEducacion(data: any){
+
+    console.log(this.existeArchivo)
     console.log(data.value);
     this.setEducationDtoData(data.value);
     console.log('EDUCACION DTO');
     console.log(this.educacionDto);
     console.log(this.archivo);
 
-
-
-   this.educationService.createEducation(this.educacionDto).subscribe((education)=>{
-      if(this.archivo){
+    this.educationService.createEducation(this.educacionDto).subscribe((education)=>{
+      if(this.existeArchivo){
         this.educationService.uploadImage(this.archivo,education.id).subscribe((e)=>{
           console.log(e);
+          this.existeArchivo =false;
           this.educationData.push(education);
         })
       }else{
         this.educationData.push(education);
       }
-
     })
+
     this.resetEducationDto();
+
   }
 
   eliminarEducacion(data:any){
@@ -77,6 +79,8 @@ export class CardEducationComponent implements OnInit {
 
   cargarImagen(data:any){
     console.log(data.target.files[0])
+    this.existeArchivo = true;
+    console.log(this.existeArchivo)
     this.archivo = data.target.files[0];
   }
 
