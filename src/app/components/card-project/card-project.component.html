@@ -12,26 +12,34 @@
   <!-- Modal -->
   <ng-template #demoModal let-modal>
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Actualizar Perfil</h4>
+      <h4 class="modal-title" id="modal-basic-title">Agregar Proyecto</h4>
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
-    <form (ngSubmit)="agregarProyecto(proyectoForm)" #proyectoForm="ngForm" >
+    <form  #proyectoForm="ngForm" >
       <div class="modal-body">
         <div class="mb-3">
-          <label for="formFile" class="form-label">Foto de Perfil</label>
-          <input (change)="cargaImagen($event)" name="foto_perfil" ngModel class="form-control" type="file" id="foto_perfil">
+          <label for="imagen" class="form-label">Imagen del proyecto</label>
+          <input (change)="cargaImagen($event)" name="imagen" ngModel class="form-control" type="file" id="imagen">
         </div>
         <div class="mb-3">
           <label for="nombre" class="form-label">Nombre del Proyecto</label>
-          <input name="nombre" ngModel class="form-control" type="file" id="foto_perfil">
+          <input name="nombre" ngModel class="form-control" type="text" id="nombre">
         </div>
         <div class="mb-3">
-          <label for="formFile" class="form-label">Foto de Perfil</label>
-          <input (change)="cargaImagen($event)" name="foto_perfil" ngModel class="form-control" type="file" id="foto_perfil">
+          <label for="descripcion" class="form-label">Descripcion</label>
+          <input name="descripcion" ngModel class="form-control" type="text" id="descripcion">
+        </div>
+        <div class="mb-3">
+          <label for="repositorio" class="form-label">Link del Respositorio</label>
+          <input name="repositorio" ngModel class="form-control" type="text" id="repositorio">
+        </div>
+        <div class="mb-3">
+          <label for="demo" class="form-label">Link de la Demo</label>
+          <input name="demo" ngModel class="form-control" type="text" id="demo">
         </div>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-outline-success" (click)="modal.close('Save click')">Actualizar</button>
+        <button type="submit" class="btn btn-outline-success" (click)="[agregarProyecto(proyectoForm),modal.close('Save click')]">Actualizar</button>
       </div>
     </form>
   </ng-template>
