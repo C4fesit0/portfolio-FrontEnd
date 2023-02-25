@@ -3,6 +3,8 @@ import { IProject } from '../../interfaces/IProject.interface';
 import { ProjectService } from 'src/app/services/project.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
+import { ISkill } from '../../interfaces/ISkill.interface';
+import { IProjectDto } from '../../interfaces/IProjectDto.interface';
 
 @Component({
   selector: 'app-card-project',
@@ -14,26 +16,73 @@ import { NgForm } from '@angular/forms';
 })
 export class CardProjectComponent implements OnInit {
 
+
+  @Input() skills:ISkill[] = [];
+  tecnologiasIds:number[] = [];
+
+  projectDto:IProjectDto = {
+    nombre:'',
+    descripcion:'',
+    demo:'',
+    repositorio:'',
+    id_autor:1,
+    image:'',
+    tecnologias:[]
+  }
+
+  archivo!:File;
+
   projects:IProject[] = [];
   constructor(private projectService:ProjectService,private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    //Projects
-   this.projectService.getProjects().subscribe((projects)=>{
+   //Projects
+  this.projectService.getProjects().subscribe((projects)=>{
    /*  console.log(projects); */
     this.projects = projects;
   })
   }
+
   public open(modal: any): void {
     this.modalService.open(modal);
   }
 
-  agregarProyecto(data: NgForm):void{
-    console.log(data.value)
+  fieldsetChange(event:any){
+    console.log(event.target.checked)
+    console.log(event.target.id)
+    const id = parseInt(event.target.id);
+    const checked = event.target.checked;
+    if(checked){
+      this.tecnologiasIds.push(id)
+    }else if(!checked){
+      const index = this.tecnologiasIds.indexOf(id);
+      this.tecnologiasIds.splice(index,1)
+    }
   }
 
-  cargaImagen(event:Event):void{
-    console.log(event.target)
+
+  agregarProyecto(data: NgForm):void{
+    console.log(data.value)
+    this.setDataDto(data.value);
+    console.log(this.projectDto);
+    this.projectService.createProject(this.projectDto).subscribe((e)=>{
+      this.projects.push(e);
+    })
+  }
+
+  setDataDto(data:any):void{
+    this.projectDto.nombre = data.nombre;
+    this.projectDto.descripcion = data.descripcion;
+    this.projectDto.demo = data.demo;
+    this.projectDto.repositorio = data.repositorio;
+    this.projectDto.image = this.archivo?this.archivo.name:'';
+    this.projectDto.tecnologias = this.tecnologiasIds;
+    console.log(this.projectDto);
+  }
+
+  cargaImagen(event:any):void{
+    console.log(event.target.files[0])
+    this.archivo = event.target.files[0];
   }
 
 

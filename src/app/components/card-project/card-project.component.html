@@ -37,6 +37,17 @@
           <label for="demo" class="form-label">Link de la Demo</label>
           <input name="demo" ngModel class="form-control" type="text" id="demo">
         </div>
+        <div class="mb-3" >
+          <fieldset id="tecnologias" (change)="fieldsetChange($event)">
+            <legend>Eliga que tecnologias uso:</legend>
+            <div *ngFor="let skill of skills" class="form-check">
+              <input class="form-check-input" type="checkbox" [name]="skill.nombre" [id]="skill.id">
+              <label class="form-check-label" for="{{+skill.id}}">
+                {{skill.nombre}}
+              </label>
+            </div>
+          </fieldset>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-outline-success" (click)="[agregarProyecto(proyectoForm),modal.close('Save click')]">Actualizar</button>
