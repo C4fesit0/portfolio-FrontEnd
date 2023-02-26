@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { IProject } from 'src/app/interfaces/IProject.interface';
 
 @Component({
@@ -11,4 +11,14 @@ import { IProject } from 'src/app/interfaces/IProject.interface';
 })
 export class ProjectComponent {
   @Input() project !:IProject;
+  imagen!:string;
+  @Input() edit:boolean=false;
+
+  @Output() eliminarEvent = new EventEmitter<number>();
+
+
+  eliminarProyecto(){
+    this.eliminarEvent.emit(this.project.id);
+  }
+
 }

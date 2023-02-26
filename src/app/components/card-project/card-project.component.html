@@ -1,7 +1,7 @@
-<app-project [project]="project" *ngFor="let project of projects"></app-project>
+<app-project [edit]="this.edit" (eliminarEvent)="eliminarProyecto($event)" [project]="project" *ngFor="let project of projects"></app-project>
 
 
-    <div class="column--right__button d-flex justify-content-center">
+    <div *ngIf="this.edit" class="column--right__button d-flex justify-content-center">
       <button (click)="open(demoModal)" class="btn btn-sm btn-outline-primary btn--edit btn--edit--project ">
         <i class="fa-solid fa-plus icon"></i>Agregar
       </button>

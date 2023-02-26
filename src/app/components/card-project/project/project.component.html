@@ -1,7 +1,12 @@
 <div class="card__image-container">
-  <img src="{{project.image}}" alt="project image" class="card__image"/>
+  <img *ngIf="!this.imagen" src="http://localhost:8080/proyecto/image/{{project.id}}" alt="project image" class="card__image"/>
+  <img *ngIf="this.imagen" src="{{this.imagen}}" alt="project image" class="card__image"/>
 </div>
 <div class="project">
+  <div *ngIf="edit" class="d-flex gap-2">
+    <button (click)="eliminarProyecto()" class="btn btn-sm btn-outline-danger btn--edit"><i class="fa-solid fa-trash m-1"></i>Eliminar</button>
+    <button class="btn btn-sm btn-outline-primary btn--edit"><i _ngcontent-cby-c121="" class="fa-solid fa-pen-to-square"></i>Editar</button>
+  </div>
   <app-project-tag [tecnologias]="project.tecnologias"></app-project-tag>
   <h2 class="card__title">{{project.nombre}}</h2>
   <p class="card__text">{{project.descripcion}}</p>

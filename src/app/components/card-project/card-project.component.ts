@@ -19,7 +19,8 @@ export class CardProjectComponent implements OnInit {
 
   @Input() skills:ISkill[] = [];
   tecnologiasIds:number[] = [];
-
+  existeImg :boolean=false;
+  @Input() edit:boolean=false;
   projectDto:IProjectDto = {
     nombre:'',
     descripcion:'',
@@ -66,8 +67,24 @@ export class CardProjectComponent implements OnInit {
     this.setDataDto(data.value);
     console.log(this.projectDto);
     this.projectService.createProject(this.projectDto).subscribe((e)=>{
-      this.projects.push(e);
+      if(this.existeImg){
+        console.log('se va a cargar una imagen')
+        this.projectService.uploadImage(this.archivo,e.id).subscribe((res)=>{
+          console.log(res);
+        })
+      }else if(!this.existeImg)
+      {
+        this.projects.push(e);
+      }
     })
+  }
+
+  eliminarProyecto(id:number){
+    this.projectService.deleteProject(id).subscribe((res)=>{
+      this.projects = this.projects.filter((e)=>{
+        return e.id!=id
+      })
+    });
   }
 
   setDataDto(data:any):void{
@@ -83,6 +100,7 @@ export class CardProjectComponent implements OnInit {
   cargaImagen(event:any):void{
     console.log(event.target.files[0])
     this.archivo = event.target.files[0];
+    this.existeImg=true;
   }
 
 
