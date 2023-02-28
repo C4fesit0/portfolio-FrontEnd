@@ -6,15 +6,15 @@ import { ILoginData } from '../interfaces/ILoginData.interface';
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserService {
 
-  usuarioLogeado:boolean =true;
+  usuarioLogeado:boolean = false;
   apiURL='http://localhost:8080/usuario/';
 
   constructor(private http:HttpClient) { }
 
   login(data:ILoginData):Observable<boolean>{
-
     const body ={
       email:data.email,
       password:data.password
@@ -23,7 +23,7 @@ export class UserService {
   }
 
   logout():boolean{
-    this.usuarioLogeado =false;
+    this.usuarioLogeado = false;
     return this.usuarioLogeado;
   }
 
