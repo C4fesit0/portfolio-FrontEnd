@@ -7,13 +7,19 @@
     <!-- Email input -->
     <div class="form-outline mb-4">
       <label class="form-label" for="mailLabel">Email address</label>
-      <input type="email" name="email" ngModel id="mail" class="form-control">
+      <input required type="email" name="email" [(ngModel)]="data.email" #email="ngModel" id="mail" class="form-control">
+      <div class="form-alert " width="20px" [hidden]="email.valid || email.pristine">
+       <p> El email es obligatorio</p>
+      </div>
     </div>
 
     <!-- Password input -->
     <div class="form-outline mb-4">
       <label class="form-label" for="password">Password</label>
-      <input type="password" id="password" class="form-control" name="password" ngModel>
+      <input required [(ngModel)]="data.password" #password="ngModel" type="password" id="password" class="form-control" name="password" ngModel>
+      <div class="form-alert " width="20px" [hidden]="password.valid || password.pristine">
+        <p> La contraseña es obligatorio</p>
+       </div>
     </div>
 
     <!-- Submit button -->

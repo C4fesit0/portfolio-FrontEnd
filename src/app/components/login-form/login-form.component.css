@@ -8,3 +8,9 @@
       width: 300px;
     }
 }
+
+.form-alert{
+  height: 20px;
+  color: red;
+  margin-top: 5px;
+}
