@@ -37,8 +37,8 @@ export class CardExperienceComponent implements OnInit {
   ngOnInit(): void {
     this.experienceService.getExperienceData().subscribe((experiences=>{
       this.experiences = experiences;
-      console.log('Exp API==>')
-      console.log(this.experiences)
+      /* console.log('Exp API==>')
+      console.log(this.experiences) */
     }))
 
   }
@@ -63,13 +63,13 @@ export class CardExperienceComponent implements OnInit {
       if(this.existeArchivo){
         this.experienceService.uploadImage(this.archivo,e.id).subscribe((e)=>{
           this.existeArchivo = false;
-          console.log(e);
+          //console.log(e);
         })
       }
       if(e.id){
         this.experiences.push(e);
       }else{
-        console.log(e);
+        //console.log(e);
       }
     });
     this.resetExperienceDto();

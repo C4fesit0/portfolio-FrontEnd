@@ -8,6 +8,6 @@
  <section class="column column--right">
     <app-card-skills [edit]="this.userService.usuarioLogeado"  [skills]="skillsFront"></app-card-skills>
     <app-card-skills  [edit]="this.userService.usuarioLogeado" [skills]="skillsBack"></app-card-skills>
-    <app-card-project></app-card-project>
+    <app-card-project [edit]="this.userService.usuarioLogeado" [skills]="this.skills" ></app-card-project>
   </section>
 </main>

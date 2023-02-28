@@ -1,4 +1,4 @@
-<app-project [edit]="this.edit" (eliminarEvent)="eliminarProyecto($event)" [project]="project" *ngFor="let project of projects"></app-project>
+<app-project [edit]="this.edit" (eliminarEvent)="eliminarProyecto($event)" [skills]="this.skills" [project]="project" *ngFor="let project of projects"></app-project>
 
 
     <div *ngIf="this.edit" class="column--right__button d-flex justify-content-center">

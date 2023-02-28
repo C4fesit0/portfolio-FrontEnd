@@ -15,6 +15,7 @@ export class MainComponent implements OnInit {
 
   @Output() usuarioLogeado:boolean = false;
 
+  skills:ISkill[] = [];
   skillsFront:ISkill[] = [];
   skillsBack:ISkill[]=[];
 
@@ -29,6 +30,7 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
      //Skills
      this.skillService.getSkills().subscribe( (skills)=>{
+      this.skills = skills;
       skills.forEach((skill) =>{
        switch(skill.rol.id){
          case 2:
