@@ -5,13 +5,63 @@
 <div class="project">
   <div *ngIf="edit" class="d-flex gap-2">
     <button (click)="eliminarProyecto()" class="btn btn-sm btn-outline-danger btn--edit"><i class="fa-solid fa-trash m-1"></i>Eliminar</button>
-    <button class="btn btn-sm btn-outline-primary btn--edit"><i _ngcontent-cby-c121="" class="fa-solid fa-pen-to-square"></i>Editar</button>
+    <button  (click)="open(demoModal)" class="btn btn-sm btn-outline-primary btn--edit"><i _ngcontent-cby-c121="" class="fa-solid fa-pen-to-square m-1"></i>Editar</button>
   </div>
   <app-project-tag [tecnologias]="project.tecnologias"></app-project-tag>
   <h2 class="card__title">{{project.nombre}}</h2>
   <p class="card__text">{{project.descripcion}}</p>
     <div class="buttons">
-      <a *ngIf="project.demo !==''" href="{{project.demo}}" target="_blank" class="button button--primary">Demo</a>
-      <a *ngIf="project.repositorio!==''" href="{{project.repositorio}}" target="_blank" class="button button--ghost">Code</a>
+      <a *ngIf="project.demo !==' '" href="{{project.demo}}" target="_blank" class="button button--primary">Demo</a>
+      <a *ngIf="project.repositorio!==' '" href="{{project.repositorio}}" target="_blank" class="button button--ghost">Code</a>
     </div>
 </div>
+
+
+
+
+<!-- Modal -->
+<ng-template #demoModal let-modal>
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Agregar Proyecto</h4>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+</div>
+<form  #proyectoForm="ngForm" >
+  <div class="modal-body">
+    <div class="mb-3">
+      <label for="imagen" class="form-label">Imagen del proyecto</label>
+      <input (change)="cargaImagen($event)" name="imagen" ngModel class="form-control" type="file" id="imagen">
+    </div>
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre del Proyecto</label>
+      <input name="nombre" [(ngModel)]="project.nombre" class="form-control" type="text" id="nombre">
+    </div>
+    <div class="mb-3">
+      <label for="descripcion" class="form-label">Descripcion</label>
+      <input name="descripcion" [(ngModel)]="project.descripcion" class="form-control" type="text" id="descripcion">
+    </div>
+    <div class="mb-3">
+      <label for="repositorio" class="form-label">Link del Respositorio</label>
+      <input name="repositorio" [(ngModel)]="project.repositorio" class="form-control" type="text" id="repositorio">
+    </div>
+    <div class="mb-3">
+      <label for="demo" class="form-label">Link de la Demo</label>
+      <input name="demo" [(ngModel)]="project.demo" class="form-control" type="text" id="demo">
+    </div>
+    <div class="mb-3" >
+      <fieldset id="tecnologias" (change)="fieldsetChange($event)">
+        <legend>Eliga que tecnologias uso:</legend>
+        <div *ngFor="let skill of skills" class="form-check">
+          <input [checked]="existeTecnologia(skill)" class="form-check-input" type="checkbox" [name]="skill.nombre" [id]="skill.id">
+          <label class="form-check-label" for="{{+skill.id}}">
+            {{skill.nombre}}
+          </label>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-outline-success" (click)="[actualizarProyecto(proyectoForm),modal.close('Save click')]">Actualizar</button>
+  </div>
+</form>
+</ng-template>
+
