@@ -10,8 +10,8 @@ import { IProfileDto } from '../interfaces/IProfileDto.interface';
 export class ProfileService {
 
   //apiURL='http://localhost:3000/profile';
-  endPoint='http://localhost:8080/persona/';
-  //endPoint='https://porft-back.onrender.com/persona/';
+  //endPoint='http://localhost:8080/persona/';
+  endPoint='https://porft-back.onrender.com/persona/';
   constructor(private http:HttpClient) {
    }
 
