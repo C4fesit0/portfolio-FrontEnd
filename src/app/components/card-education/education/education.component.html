@@ -2,6 +2,7 @@
 
   <div>
     <img *ngIf="imagen" src="{{imagen}}" alt="education image" class="experience__image">
+    <!-- <img *ngIf="!imagen" src="https://porft-back.onrender.com/educacion/image/{{education.id}}" alt="education image" class="experience__image"> -->
     <img *ngIf="!imagen" src="http://localhost:8080/educacion/image/{{education.id}}" alt="education image" class="experience__image">
   <div class="experience__info">
     <h5 class="experience__job">{{education.titulo}}</h5>

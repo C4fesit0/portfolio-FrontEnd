@@ -11,12 +11,12 @@ export class ProfileService {
 
   //apiURL='http://localhost:3000/profile';
   endPoint='http://localhost:8080/persona/';
-
+  //endPoint='https://porft-back.onrender.com/persona/';
   constructor(private http:HttpClient) {
    }
 
    getProfileData():Observable<IProfile>{
-    return this.http.get<IProfile>('http://localhost:8080/persona/');
+    return this.http.get<IProfile>(this.endPoint);
    }
 
    getProfileImage(id:number):Observable<any>{

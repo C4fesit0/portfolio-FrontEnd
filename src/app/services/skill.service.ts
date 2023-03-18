@@ -12,6 +12,7 @@ export class SkillService {
 
   //apiURL='http://localhost:8080/tecnologia/listar';
   endPoint = 'http://localhost:8080/tecnologia/'
+  //endPoint='https://porft-back.onrender.com/tecnologia/';
   constructor(private http:HttpClient) { }
 
   getSkills() : Observable<ISkill[]>{

@@ -2,8 +2,9 @@
 <div class="experience">
   <div>
     <img *ngIf="this.image" [src]="this.image" alt="" class="experience__image">
+    <!-- <img *ngIf="!this.image" src="https://porft-back.onrender.com/experiencia/image/{{experience.id}}" alt="" class="experience__image"> -->
     <img *ngIf="!this.image" src="http://localhost:8080/experiencia/image/{{experience.id}}" alt="" class="experience__image">
-  <div class="experience__info">
+    <div class="experience__info">
     <p data-section="experience" data-value="first-job-dates" class="experience__time">{{experience.fecha_inicio | date:'MMMM y' | titlecase}} - {{experience.fecha_final == null? 'Actualidad':(experience.fecha_final | date:'MMMM y' | titlecase)}}</p>
     <h5 data-section="experience" data-value="first-job-title" class="experience__job">{{experience.puesto}}</h5>
     <p data-section="experience" data-value="first-job-description" class="experience__description">{{experience.descripcion}}</p>

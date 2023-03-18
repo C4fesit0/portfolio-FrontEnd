@@ -43,6 +43,7 @@ export class CardProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.profileService.getProfileData().subscribe((data)=>{
+      console.log(data)
       this.profile=data;
     })
   }

@@ -9,8 +9,9 @@ import { IExperienceDto } from '../interfaces/IExperienceDto.interface';
 })
 export class ExperienceService {
 
-  //apiURL = 'http://localhost:3000/experience';
+  //endPoint = 'http://localhost:3000/experience';
   endPoint = 'http://localhost:8080/experiencia/';
+  //endPoint = 'https://porft-back.onrender.com/experiencia/';
   constructor(private http:HttpClient) { }
 
   getExperienceData():Observable<IExperience[]>{

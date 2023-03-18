@@ -10,8 +10,9 @@ import { ILoginData } from '../interfaces/ILoginData.interface';
 export class UserService {
 
   usuarioLogeado:boolean = false;
-  apiURL='http://localhost:8080/usuario/';
-
+  //endPoint='http://localhost:8080/usuario/';
+  endPoint = 'http://localhost:8080/usuario/login';
+  //endPoint = 'https://porft-back.onrender.com/usuario/login';
   constructor(private http:HttpClient) { }
 
   login(data:ILoginData):Observable<boolean>{
@@ -19,7 +20,7 @@ export class UserService {
       email:data.email,
       password:data.password
     }
-    return this.http.post<boolean>("http://localhost:8080/usuario/login",body);
+    return this.http.post<boolean>(this.endPoint,body);
   }
 
   logout():boolean{
