@@ -49,8 +49,8 @@
   </ng-template>
 
   <div class="card__image-container">
-    <img *ngIf="foto_perfil" [src]="foto_perfil" alt="profile image"/>
-    <img *ngIf="!foto_perfil" src="https://porft-back.onrender.com/persona/image/{{profile.id}}" alt="profile image" />
+    <img *ngIf="profile.foto_perfil" [src]="profile.foto_perfil" alt="profile image"/>
+   <!--  <img *ngIf="profile.foto_perfil== ''" [src]="this.imageService.url" alt="profile image" /> -->
     <!-- <img *ngIf="!foto_perfil" src="http://localhost:8080/persona/image/{{profile.id}}" alt="profile image" /> -->
   </div>
   <div class="card__header">

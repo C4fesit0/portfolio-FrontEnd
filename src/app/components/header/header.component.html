@@ -1,16 +1,15 @@
 <header>
   <div class="header">
     <div class="switches">
+      <div class="logo">
+        <img src="{{logo}}" alt="" class="">
+      </div>
       <div (click)="changeTheme()" id="toggle-theme" class="toggle-theme">
         <img id="toggle-icon" src="{{icon}}" alt="icon theme" class="toggle-theme__icon">
         <p id="toggle-text" class="toggle-theme__text">{{iconText}}</p>
       </div>
     </div>
-    <div id="flags" class="flags">
-      <!-- <div class="flags__item">
-        <img src="{{logo}}" alt="" class="">
-      </div> -->
-    </div>
+
     <!-- <div id="toggle-colors" class="colors">
       <div (click)="changeColor(item.color)" *ngFor="let item of colors" class="{{item.class}}"></div>
     </div> -->

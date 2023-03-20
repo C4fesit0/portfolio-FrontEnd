@@ -22,10 +22,10 @@ export class EditModalComponent {
     descripcion: '',
     imagen: ''
   };
-  image!:File;
+  image:any;
   existeImagen:boolean =false;
   @Output() actualizarEvent= new EventEmitter<IExperience>();
-  @Output() actualizarImageEvent= new EventEmitter<File>();
+  @Output() actualizarImageEvent= new EventEmitter<any>();
 
   constructor(private modalService: NgbModal) {
 
@@ -36,14 +36,14 @@ export class EditModalComponent {
   }
 
   actualizarExperiencia(data: NgForm){
-    //console.log(data.value);
+    console.log(data.value);
     this.setExperienciaData(data.value);
-    this.actualizarEvent.emit(this.experienceUpdated);
     if(this.existeImagen){
       console.log('SENDING IMAGE')
       this.actualizarImageEvent.emit(this.image);
       this.existeImagen =false;
     }
+    this.actualizarEvent.emit(this.experienceUpdated);
   }
 
   setExperienciaData(data: IExperience){
@@ -67,8 +67,7 @@ export class EditModalComponent {
 
   cargaImagen(event:any){
     this.existeImagen =true;
-    this.image = event.target.files[0];
-    console.log(this.image);
+    this.image = event;
   }
 
   actualidad(event: any):void{

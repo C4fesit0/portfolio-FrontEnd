@@ -2,6 +2,7 @@ import { Component, Input, OnInit, Output,EventEmitter } from '@angular/core';
 import { IExperience } from '../../../interfaces/IExperience.interface';
 import { IExperienceDto } from '../../../interfaces/IExperienceDto.interface';
 import { ExperienceService } from '../../../services/experience.service';
+import { Storage, getDownloadURL, list, listAll, ref, uploadBytes } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-experience',
@@ -27,9 +28,11 @@ export class ExperienceComponent implements OnInit {
 
   image!:string | undefined;
 
-  archivo!:File;
+  event:any;
   existeArchivo:boolean =false;
-  constructor(private experienceService:ExperienceService) { }
+
+  constructor(private experienceService:ExperienceService,
+    private storage:Storage) { }
 
   ngOnInit(): void {
   }
@@ -40,41 +43,42 @@ export class ExperienceComponent implements OnInit {
 
 
   actualizarExperiencia(experiencia:IExperience){
-    //console.log(experiencia);
-   //console.log('CARD EXPERIENCE');
+    console.log(experiencia);
+   console.log('CARD EXPERIENCE');
     this.setExperienceDto(experiencia);
-
-    this.experienceService.updateExperience(experiencia.id,this.experienceDto).subscribe((e)=>{
-        if(this.existeArchivo){
-          //console.log('hay imagen');
-          this.experienceService.uploadImage(this.archivo,experiencia.id).subscribe((e)=>{
-            //console.log('SE SUBIO LA IMAGEN');
-            this.experience = e;
-            this.convertirArchivo(this.archivo);
-            this.existeArchivo = false;
+   if(this.existeArchivo){
+    const name = "experiences/experiencia_"+this.experience.id;
+        const file = this.event.target.files[0];
+        const imageRef= ref(this.storage, `images/`+name);
+        uploadBytes(imageRef,file)
+        .then(res =>{
+          console.log(res)
+          const imagesRef = ref(this.storage,'images/experiences/experiencia_'+this.experience.id);
+          getDownloadURL(imagesRef).then((url)=>{
+            console.log(url)
+            this.experienceDto.imagen = url;
+            this.experienceService.updateExperience(this.experience.id,this.experienceDto).subscribe((e)=>{
+              this.experience = e;
+            });
           })
-        }else{
-          //console.log('no hay imagen');
-          this.experience = e;
-        }
-    })
+          .catch(err =>{console.log(err)});
+        })
+        .catch(err=>{
+          console.log(err);
+        })
+        this.existeArchivo=false;
+   }else{
+      this.experienceDto.imagen = this.experience.imagen;
+      this.experienceService.updateExperience(this.experience.id,this.experienceDto).subscribe((e)=>{
+        this.experience = e;
+      });
+   }
   }
 
-  actualizarImagen(image:File){
-    console.log('CARD-EXP')
-    console.log(image);
-    this.existeArchivo = true;
-    this.archivo = image;
-  }
-
-
-  convertirArchivo(file:File) {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-        //console.log(reader.result);
-        this.image =reader.result?.toString();
-    };
+  actualizarImagen($event:any){
+    console.log($event);
+    this.existeArchivo=true;
+    this.event = $event;
   }
 
   setExperienceDto(experiencia:IExperience){

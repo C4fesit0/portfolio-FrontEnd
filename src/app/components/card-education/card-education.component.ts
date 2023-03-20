@@ -3,6 +3,7 @@ import { EducationService } from '../../services/education.service';
 import { IEducation } from '../../interfaces/IEducation.interface';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IEducationDto } from 'src/app/interfaces/IEducationDto.interface';
+import { Storage, getDownloadURL, list, listAll, ref, uploadBytes } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-card-education',
@@ -28,12 +29,14 @@ export class CardEducationComponent implements OnInit {
   id_nivel_estudio:0,
   }
 
-  archivo!:File;
+  event:any;
   existeArchivo:boolean= false;
-  constructor(private educationService:EducationService, private modalService: NgbModal) { }
+  constructor(private eduacionService:EducationService,
+            private modalService: NgbModal,
+            private storage:Storage) { }
 
   ngOnInit(): void {
-    this.educationService.getEducationData().subscribe((data)=>{
+    this.eduacionService.getEducationData().subscribe((data)=>{
       //console.log(data);
       this.educationData= data;
     })
@@ -50,19 +53,38 @@ export class CardEducationComponent implements OnInit {
     this.setEducationDtoData(data.value);
     console.log('EDUCACION DTO');
     console.log(this.educacionDto);
-    console.log(this.archivo);
 
-    this.educationService.createEducation(this.educacionDto).subscribe((education)=>{
-      if(this.existeArchivo){
-        this.educationService.uploadImage(this.archivo,education.id).subscribe((e)=>{
-          console.log(e);
-          this.existeArchivo =false;
-          this.educationData.push(education);
+    if(this.existeArchivo){
+        this.eduacionService.createEducation(this.educacionDto).subscribe((education)=>{
+        const name = "educations/education_"+education.id;
+        const file = this.event.target.files[0];
+        const imageRef= ref(this.storage, `images/`+name);
+        uploadBytes(imageRef,file)
+            .then(res =>{
+              console.log(res)
+              const imagesRef = ref(this.storage,'images/educations/education_'+education.id);
+              getDownloadURL(imagesRef).then((url)=>{
+                console.log(url)
+                this.educacionDto.imagen = url;
+                this.eduacionService.updateEducation(this.educacionDto,education.id).subscribe((e)=>{
+                this.existeArchivo =false;
+                this.educationData.push(e);
+                });
+              })
+              .catch(err =>{console.log(err)});
+            })
+            .catch(err=>{
+              console.log(err);
+            })
+            this.existeArchivo=false;
+
         })
-      }else{
-        this.educationData.push(education);
-      }
-    })
+       }else{
+          this.eduacionService.createEducation(this.educacionDto).subscribe((e)=>{
+            this.existeArchivo =false;
+            this.educationData.push(e);
+          })
+       }
 
     this.resetEducationDto();
 
@@ -70,18 +92,16 @@ export class CardEducationComponent implements OnInit {
 
   eliminarEducacion(data:any){
     console.log(data);
-    this.educationService.deleteEducation(data).subscribe((e)=>{
+    this.eduacionService.deleteEducation(data).subscribe((e)=>{
      this.educationData = this.educationData.filter((education)=> {
       return education.id!=data
      });
     })
   }
 
-  cargarImagen(data:any){
-    console.log(data.target.files[0])
+  cargarImagen($event:any){
     this.existeArchivo = true;
-    console.log(this.existeArchivo)
-    this.archivo = data.target.files[0];
+    this.event = $event;
   }
 
   actualidad(data: any){
@@ -100,7 +120,7 @@ export class CardEducationComponent implements OnInit {
     this.educacionDto.id_nivel_estudio = data.nivel_estudio;
     this.educacionDto.institucion = data.institucion;
     this.educacionDto.titulo =data.titulo;
-    this.educacionDto.imagen = data.imagen;
+    this.educacionDto.imagen = '';
   }
 
   resetEducationDto(){

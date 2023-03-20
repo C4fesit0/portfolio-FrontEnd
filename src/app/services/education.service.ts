@@ -12,8 +12,8 @@ export class EducationService {
   constructor(private http:HttpClient) { }
 
   //endPoint='http://localhost:3000/education';
-  //endPoint='http://localhost:8080/educacion/';
-  endPoint = 'https://porft-back.onrender.com/educacion/';
+  endPoint='http://localhost:8080/educacion/';
+  //endPoint = 'https://porft-back.onrender.com/educacion/';
 
   getEducationData():Observable<IEducation[]>{
     return this.http.get<IEducation[]>(this.endPoint);

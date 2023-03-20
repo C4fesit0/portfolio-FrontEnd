@@ -4,6 +4,8 @@ import { ProfileService } from '../../services/profile.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { IProfileDto } from '../../interfaces/IProfileDto.interface';
+import { ImageService } from '../../services/image.service';
+import { Storage, getDownloadURL, list, ref, uploadBytes } from '@angular/fire/storage';
 
 
 @Component({
@@ -16,7 +18,7 @@ export class CardProfileComponent implements OnInit {
   @Input() edit:boolean = false;
 
   profile:IProfile = {
-    id: 0,
+    id: 1,
     nombre: "",
     telefono: "",
     email: "",
@@ -37,9 +39,12 @@ export class CardProfileComponent implements OnInit {
 
   foto_perfil!:string | undefined;
 
-  archivo!:File;
+  event:any;
   existeArchivo:boolean = false;
-  constructor(private profileService:ProfileService, private modalService: NgbModal) { }
+
+  constructor(private profileService:ProfileService,
+      private modalService: NgbModal,
+      private storage:Storage) { }
 
   ngOnInit(): void {
     this.profileService.getProfileData().subscribe((data)=>{
@@ -63,45 +68,35 @@ export class CardProfileComponent implements OnInit {
     this.profileDto.sobre_mi=data.value.sobre_mi;
     this.profileDto.titulo=data.value.titulo;
 
-    console.log(this.profileDto);
-
-    if(this.existeArchivo){
-      this.profileDto.foto_perfil=this.archivo.name;
-      this.profileService.subirFoto(this.archivo,this.profile.id).subscribe(e =>{
-        //console.log(e);
-        this.convertirArchivo(this.archivo);
+    const name = "perfil_"+1;
+    const file = this.event.target.files[0];
+    const imageRef= ref(this.storage, `images/`+name);
+    uploadBytes(imageRef,file)
+    .then(res =>{
+      console.log(res)
+      const imagesRef = ref(this.storage,'images/'+name);
+      getDownloadURL(imagesRef).then((url)=>{
+        console.log(url)
+        this.profileDto.foto_perfil = url;
+        console.log(this.profileDto);
+        this.profileService.actualizarPerfil(this.profileDto).subscribe(e =>{
+          this.profile = e;
+        });
       })
-    }else{
-      this.profileDto.foto_perfil = this.profile.foto_perfil
-    }
+      .catch(err =>{console.log(err)});
+    })
+    .catch(err=>{
+      console.log(err);
+    })
 
 
-    this.profileService.actualizarPerfil(this.profileDto).subscribe(e =>{
-
-      if(e == 'ERROR'){
-        console.error('No se pudo actualizar');
-        console.log(e);
-        return
-      }
-      this.profile = e;
-
-    });
 
   }
 
-  cargaImagen(event:any){
-    this.existeArchivo = true;
-    this.archivo = event.target.files[0];
-    //console.log(this.archivo);
+  cargaImagen($event:any){
+      const name = "perfil_"+this.profile.id;
+      this.event = $event;
   }
 
-  convertirArchivo(file:File) {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-        console.log(reader.result);
-        this.foto_perfil =reader.result?.toString();
-    };
-  }
 
 }

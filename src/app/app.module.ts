@@ -29,6 +29,9 @@ import { EditEducationModalComponent } from './components/card-education/edit-ed
 import { EditSkillComponent } from './components/card-skills/edit-skill/edit-skill.component';
 import { SkillComponent } from './components/card-skills/skill/skill.component';
 import { ProjectComponent } from './components/card-project/project/project.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideStorage,getStorage } from '@angular/fire/storage';
 registerLocaleData(localeEs, "es");
 
 @NgModule({
@@ -58,7 +61,9 @@ registerLocaleData(localeEs, "es");
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideStorage(() => getStorage())
   ],
   providers: [{ provide: LOCALE_ID, useValue: "es" } ],
   bootstrap: [AppComponent]

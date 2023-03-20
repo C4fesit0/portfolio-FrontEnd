@@ -10,8 +10,8 @@ import { IProjectDto } from '../interfaces/IProjectDto.interface';
 export class ProjectService {
 
   //apiURL='http://localhost:8080/proyecto/listar';
-  endPoint = 'https://porft-back.onrender.com/proyecto/'
-  //endPoint = "http://localhost:8080/proyecto/";
+  //endPoint = 'https://porft-back.onrender.com/proyecto/'
+  endPoint = "http://localhost:8080/proyecto/";
   constructor(private http:HttpClient) { }
 
   getProjects():Observable<IProject[]>{
