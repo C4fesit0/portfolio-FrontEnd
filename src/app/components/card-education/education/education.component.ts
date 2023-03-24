@@ -39,10 +39,10 @@ export class EducationComponent implements OnInit {
   }
 
   actualizarEducacion(data:IEducation){
-    console.log('ACTUALIZAR EDUCACION');
+    /* console.log('ACTUALIZAR EDUCACION');
     console.log(this.existeArchivo);
     console.log(data);
-    console.log('--------------------------');
+    console.log('--------------------------'); */
     this.setEducacionDto(data);
     console.log(this.educacionDto)
     if(this.existeArchivo){

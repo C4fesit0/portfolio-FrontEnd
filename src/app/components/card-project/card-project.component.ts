@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { ISkill } from '../../interfaces/ISkill.interface';
 import { IProjectDto } from '../../interfaces/IProjectDto.interface';
+import { Storage, getDownloadURL, list, listAll, ref, uploadBytes } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-card-project',
@@ -19,7 +20,7 @@ export class CardProjectComponent implements OnInit {
 
   @Input() skills:ISkill[] = [];
   tecnologiasIds:number[] = [];
-  existeImg :boolean=false;
+  existeArchivo :boolean=false;
   @Input() edit:boolean=false;
   projectDto:IProjectDto = {
     nombre:'',
@@ -31,15 +32,17 @@ export class CardProjectComponent implements OnInit {
     tecnologias:[]
   }
 
-  archivo!:File;
+  event:any;
 
   projects:IProject[] = [];
-  constructor(private projectService:ProjectService,private modalService: NgbModal) { }
+  constructor(private projectService:ProjectService,
+    private modalService: NgbModal,
+    private storage:Storage) { }
 
   ngOnInit(): void {
    //Projects
   this.projectService.getProjects().subscribe((projects)=>{
-   /*  console.log(projects); */
+   console.log(projects);
     this.projects = projects;
   })
   }
@@ -66,17 +69,38 @@ export class CardProjectComponent implements OnInit {
     console.log(data.value)
     this.setDataDto(data.value);
     console.log(this.projectDto);
-    this.projectService.createProject(this.projectDto).subscribe((e)=>{
-      if(this.existeImg){
-        console.log('se va a cargar una imagen')
-        this.projectService.uploadImage(this.archivo,e.id).subscribe((res)=>{
-          console.log(res);
+     if(this.existeArchivo){
+        this.projectService.createProject(this.projectDto).subscribe((project)=>{
+        const name = "projects/project_"+project.id;
+        const file = this.event.target.files[0];
+        const imageRef= ref(this.storage, `images/`+name);
+        uploadBytes(imageRef,file)
+            .then(async res =>{
+              const imagesRef = ref(this.storage,'images/projects/project_'+project.id);
+              await getDownloadURL(imagesRef).then((url)=>{
+                this.projectDto.image = url;
+                console.log("Se carga URL");
+                console.log(this.projectDto);
+                this.existeArchivo =false;
+                  this.projectService.updateProject(this.projectDto,project.id).subscribe((e)=>{
+                    console.log(e);
+                    this.projects.push(e);
+                    this.existeArchivo =false;
+                  })
+              })
+            })
+            .catch(err=>{
+              console.log(err);
+            })
         })
-      }else if(!this.existeImg)
-      {
-        this.projects.push(e);
-      }
-    })
+
+       }else{
+          this.projectService.createProject(this.projectDto).subscribe((e)=>{
+            console.log(e);
+           this.existeArchivo =false;
+            this.projects.push(e);
+          })
+       }
   }
 
   eliminarProyecto(id:number){
@@ -92,15 +116,14 @@ export class CardProjectComponent implements OnInit {
     this.projectDto.descripcion = data.descripcion;
     this.projectDto.demo = data.demo;
     this.projectDto.repositorio = data.repositorio;
-    this.projectDto.image = this.archivo?this.archivo.name:'';
+    this.projectDto.image = '';
     this.projectDto.tecnologias = this.tecnologiasIds;
     console.log(this.projectDto);
   }
 
-  cargaImagen(event:any):void{
-    console.log(event.target.files[0])
-    this.archivo = event.target.files[0];
-    this.existeImg=true;
+  cargaImagen($event:any):void{
+    this.event = $event;
+    this.existeArchivo = true;
   }
 
 

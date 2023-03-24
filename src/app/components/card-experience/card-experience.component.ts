@@ -63,6 +63,7 @@ export class CardExperienceComponent implements OnInit {
     console.log("Experiencia=====>");
     console.log(this.experienceDto);
 
+    if(this.existeArchivo){
     this.experienceService.createExperience(this.experienceDto).subscribe((e)=>{
         const name = "experiences/experiencia_"+e.id;
         const file = this.event.target.files[0];
@@ -88,6 +89,7 @@ export class CardExperienceComponent implements OnInit {
 
 
       });
+    }
   }
 
 /*

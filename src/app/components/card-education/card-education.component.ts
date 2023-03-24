@@ -53,40 +53,42 @@ export class CardEducationComponent implements OnInit {
     this.setEducationDtoData(data.value);
     console.log('EDUCACION DTO');
     console.log(this.educacionDto);
-
+    let id =0;
     if(this.existeArchivo){
         this.eduacionService.createEducation(this.educacionDto).subscribe((education)=>{
         const name = "educations/education_"+education.id;
         const file = this.event.target.files[0];
         const imageRef= ref(this.storage, `images/`+name);
         uploadBytes(imageRef,file)
-            .then(res =>{
-              console.log(res)
+            .then(async res =>{
               const imagesRef = ref(this.storage,'images/educations/education_'+education.id);
-              getDownloadURL(imagesRef).then((url)=>{
-                console.log(url)
+              await getDownloadURL(imagesRef).then((url)=>{
                 this.educacionDto.imagen = url;
-                this.eduacionService.updateEducation(this.educacionDto,education.id).subscribe((e)=>{
+                console.log("Se carga URL");
+                console.log(this.educacionDto);
                 this.existeArchivo =false;
-                this.educationData.push(e);
-                });
+                  id = education.id;
+                  this.eduacionService.updateEducation(this.educacionDto,id).subscribe((e)=>{
+                    console.log(e);
+                    this.educationData.push(e);
+                    this.resetEducationDto();
+                  })
               })
-              .catch(err =>{console.log(err)});
+
             })
             .catch(err=>{
               console.log(err);
             })
-            this.existeArchivo=false;
-
         })
+
        }else{
           this.eduacionService.createEducation(this.educacionDto).subscribe((e)=>{
-            this.existeArchivo =false;
+            console.log(e);
+           this.existeArchivo =false;
             this.educationData.push(e);
+            this.resetEducationDto();
           })
        }
-
-    this.resetEducationDto();
 
   }
 

@@ -4,6 +4,7 @@ import { IProject } from 'src/app/interfaces/IProject.interface';
 import { ISkill } from '../../../interfaces/ISkill.interface';
 import { IProjectDto } from 'src/app/interfaces/IProjectDto.interface';
 import { ProjectService } from '../../../services/project.service';
+import { Storage, getDownloadURL, list, listAll, ref, uploadBytes } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-project',
@@ -21,8 +22,8 @@ export class ProjectComponent implements OnInit {
   @Input() edit:boolean=false;
 
   @Output() eliminarEvent = new EventEmitter<number>();
-  existeImg: boolean =false;
-  archivo!:File;
+  existeArchivo: boolean =false;
+  event:any;
   tecnologiasIds: number[] = [];
 
   projectDto:IProjectDto = {
@@ -35,7 +36,9 @@ export class ProjectComponent implements OnInit {
     tecnologias:[]
   }
 
-  constructor(private projectService:ProjectService,private modalService: NgbModal){}
+  constructor(private projectService:ProjectService,
+    private modalService: NgbModal,
+    private storage:Storage){}
 
   ngOnInit(){
     this.leerIds();
@@ -57,10 +60,9 @@ export class ProjectComponent implements OnInit {
   }
 
 
-  cargaImagen(event:any):void{
-    console.log(event.target.files[0])
-    this.archivo = event.target.files[0];
-    this.existeImg=true;
+  cargaImagen($event:any):void{
+    this.event = $event
+    this.existeArchivo=true;
   }
 
   fieldsetChange(event:any){
@@ -78,41 +80,54 @@ export class ProjectComponent implements OnInit {
   }
 
   actualizarProyecto(data:any){
-    console.log("DATA==>");
-    console.log(data.value);
+     console.log("ACTUALIZANDO PROYECTO")
+     console.log(data.value)
     this.setProyectoDto(data.value);
-    console.log("DTO====>");
     console.log(this.projectDto);
-    this.projectService.updateProject(this.projectDto,this.project.id).subscribe((e)=>{
-      if(this.existeImg){
-        this.projectService.uploadImage(this.archivo,this.project.id).subscribe((e)=>{
-          console.log(e)
-          this.convertirArchivo(this.archivo);
+     if(this.existeArchivo){
+        this.projectService.updateProject(this.projectDto,this.project.id).subscribe((project)=>{
+        const name = "projects/project_"+project.id;
+        const file = this.event.target.files[0];
+        const imageRef= ref(this.storage, `images/`+name);
+        uploadBytes(imageRef,file)
+            .then(async res =>{
+              const imagesRef = ref(this.storage,'images/projects/project_'+project.id);
+              await getDownloadURL(imagesRef).then((url)=>{
+                this.projectDto.image = url;
+                console.log("Se carga URL");
+                console.log(this.projectDto);
+                this.existeArchivo =false;
+                  this.projectService.updateProject(this.projectDto,project.id).subscribe((e)=>{
+                    console.log(e);
+                    this.project = e;
+                    this.existeArchivo =false;
+                  })
+              })
+            })
+            .catch(err=>{
+              console.log(err);
+            })
         })
-      }
-      console.log(e);
-      this.project = e;
-    });
+       }else{
+        this.projectDto.image= this.project.image;
+          this.projectService.updateProject(this.projectDto,this.project.id).subscribe((e)=>{
+            console.log(e);
+           this.existeArchivo =false;
+            this.project = e;
+          })
+       }
   }
 
   setProyectoDto(data:any){
     this.projectDto.demo = data.demo;
     this.projectDto.descripcion = data.descripcion;
-    this.projectDto.image= this.archivo?this.archivo.name:this.project.image;
+    this.projectDto.image= '';
     this.projectDto.nombre= data.nombre;
     this.projectDto.repositorio= data.repositorio;
     this.projectDto.tecnologias= this.tecnologiasIds;
     console.log(this.project);
   }
 
-  convertirArchivo(file:File) {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-        console.log(reader.result);
-        this.imagen =reader.result?.toString();
-    };
-  }
 
   existeTecnologia(skill:ISkill){
     return this.project.tecnologias.find((e)=>{
